@@ -55,6 +55,24 @@
             </table>
             <a href="{% url 'add_transaction' %}" class="btn btn-secondary">Add New Transaction</a>
         </section>
+
+        <section>
+            <h2>Budget Overview</h2>
+            {% if budget %}
+                <p>Total Budget: {{ budget.total_budget }} Rwf</p>
+                <p>Total Expenses: {{ total_expenses }} Rwf</p>
+                <p>Remaining Budget: 
+                    {% if remaining_budget < 0 %}
+                        <span style="color: red;">{{ remaining_budget }} Rwf (Over Budget!)</span>
+                    {% else %}
+                        {{ remaining_budget }} Rwf
+                    {% endif %}
+                </p>
+                <a href="{% url 'manage_budget' %}" class="btn btn-secondary">Update Budget</a>
+            {% else %}
+                <p>No budget set. <a href="{% url 'manage_budget' %}">Set a Budget</a></p>
+            {% endif %}
+        </section>
     </main>
 </body>
 </html>

@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import SignupForm, LoginForm, AccountForm,TransactionForm
+from .forms import SignupForm, LoginForm, AccountForm,TransactionForm, BudgetForm
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Account, Transaction
+from .models import Account, Transaction, Budget
+from django.db.models import Sum
+
 
 
 def signup_view(request):
@@ -52,17 +54,31 @@ def logout_view(request):
 
 @login_required
 def home_view(request):
-    # Fetch accounts for the logged-in user
     accounts = Account.objects.filter(user=request.user)
+    transactions = Transaction.objects.filter(account__user=request.user).order_by('-date')
+    
+    # Try to get the user's budget
+    try:
+        budget = Budget.objects.get(user=request.user)
+    except Budget.DoesNotExist:
+        budget = None
 
-    # Fetch the latest 5 transactions for the logged-in user
-    transactions = Transaction.objects.filter(account__user=request.user).order_by('-date')[:5]
+    # Aggregate total expenses
+    total_expenses = Transaction.objects.filter(
+        account__user=request.user, transaction_type='expense'
+    ).aggregate(Sum('amount'))['amount__sum'] or 0
+
+    remaining_budget = budget.total_budget - total_expenses if budget else None
 
     context = {
         'accounts': accounts,
         'transactions': transactions,
+        'budget': budget,
+        'total_expenses': total_expenses,
+        'remaining_budget': remaining_budget,
     }
     return render(request, 'home.html', context)
+
 
 @login_required
 def add_account_view(request):
@@ -106,3 +122,26 @@ def add_transaction_view(request):
         'form': form,
     }
     return render(request, 'add_transaction.html', context)
+
+
+@login_required
+def manage_budget_view(request):
+    try:
+        budget = Budget.objects.get(user=request.user)
+    except Budget.DoesNotExist:
+        budget = None
+
+    if request.method == 'POST':
+        form = BudgetForm(request.POST, instance=budget)
+        if form.is_valid():
+            budget = form.save(commit=False)
+            budget.user = request.user
+            budget.save()
+            return redirect('home')
+    else:
+        form = BudgetForm(instance=budget)
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'manage_budget.html', context)
