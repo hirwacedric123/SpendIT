@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ValidationError
+from .models import Account
 
 class SignupForm(forms.ModelForm):
     confirm_password = forms.CharField(widget=forms.PasswordInput, label="Confirm Password")
@@ -23,3 +24,14 @@ class SignupForm(forms.ModelForm):
 
 class LoginForm(AuthenticationForm):
     username = forms.EmailField(label="Email")  # Use email as username
+
+
+class AccountForm(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = ['name', 'account_type', 'balance']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'account_type': forms.Select(attrs={'class': 'form-control'}),
+            'balance': forms.NumberInput(attrs={'class': 'form-control'}),
+        }

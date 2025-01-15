@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import SignupForm, LoginForm
+from .forms import SignupForm, LoginForm, AccountForm
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .models import Account, Transaction
 
 
 def signup_view(request):
@@ -50,8 +52,31 @@ def logout_view(request):
 
 @login_required
 def home_view(request):
-    # Placeholder context for now; we will expand it as we add features
+    # Fetch accounts for the logged-in user
+    accounts = Account.objects.filter(user=request.user)
+
+    # Fetch the latest 5 transactions for the logged-in user
+    transactions = Transaction.objects.filter(account__user=request.user).order_by('-date')[:5]
+
     context = {
-        'user': request.user,
+        'accounts': accounts,
+        'transactions': transactions,
     }
     return render(request, 'home.html', context)
+
+@login_required
+def add_account_view(request):
+    if request.method == 'POST':
+        form = AccountForm(request.POST)
+        if form.is_valid():
+            account = form.save(commit=False)
+            account.user = request.user  # Link the account to the logged-in user
+            account.save()
+            return redirect('home')  # Redirect to the homepage after adding
+    else:
+        form = AccountForm()
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'add_account.html', context)

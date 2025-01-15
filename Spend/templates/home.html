@@ -14,50 +14,46 @@
         <section>
             <h2>Account Overview</h2>
             <ul>
-                <li>Bank Account: Rwf 200,000</li>
-                <li>Mobile Money: Rwf 50,000</li>
-                <li>Cash: Rwf 30,000</li>
+                {% for account in accounts %}
+                    <li>{{ account.name }} ({{ account.get_account_type_display }}): {{ account.balance }} Rwf</li>
+                {% empty %}
+                    <li>No accounts added yet.</li>
+                {% endfor %}
             </ul>
+            <a href="{% url 'add_account' %}" class="btn btn-secondary">Add New Account</a>
         </section>
-    
+        
+
+        <!-- Recent Transactions -->
         <section>
             <h2>Recent Transactions</h2>
             <table>
                 <thead>
                     <tr>
                         <th>Date</th>
-                        <th>Description</th>
+                        <th>Type</th>
                         <th>Amount</th>
+                        <th>Description</th>
                         <th>Account</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>2025-01-15</td>
-                        <td>Bought groceries</td>
-                        <td>- Rwf 10,000</td>
-                        <td>Cash</td>
-                    </tr>
-                    <!-- Additional transactions -->
+                    {% for transaction in transactions %}
+                        <tr>
+                            <td>{{ transaction.date }}</td>
+                            <td>{{ transaction.get_transaction_type_display }}</td>
+                            <td>{{ transaction.amount }} Rwf</td>
+                            <td>{{ transaction.description|default:"N/A" }}</td>
+                            <td>{{ transaction.account.name }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="5">No transactions found.</td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </section>
-    
-        <section>
-            <h2>Budget Status</h2>
-            <p>Budget Remaining: <strong>Rwf 15,000</strong></p>
-        </section>
-    
-        <section>
-            <h2>Analytics</h2>
-            <p>[Visualizations here]</p>
-        </section>
-    
-        <section>
-            <h2>Reports</h2>
-            <a href="/">Generate Weekly Report</a>
-        </section>
     </main>
-    
 </body>
 </html>
