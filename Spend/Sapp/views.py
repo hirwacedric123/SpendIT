@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import SignupForm, LoginForm, AccountForm
+from .forms import SignupForm, LoginForm, AccountForm,TransactionForm
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -80,3 +80,29 @@ def add_account_view(request):
         'form': form,
     }
     return render(request, 'add_account.html', context)
+
+
+@login_required
+def add_transaction_view(request):
+    if request.method == 'POST':
+        form = TransactionForm(request.POST)
+        if form.is_valid():
+            transaction = form.save(commit=False)
+            transaction.account.user = request.user  # Ensure the account belongs to the logged-in user
+            transaction.save()
+
+            # Update the account balance based on transaction type
+            if transaction.transaction_type == 'income':
+                transaction.account.balance += transaction.amount
+            elif transaction.transaction_type == 'expense':
+                transaction.account.balance -= transaction.amount
+
+            transaction.account.save()
+            return redirect('home')  # Redirect to dashboard after adding
+    else:
+        form = TransactionForm()
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'add_transaction.html', context)

@@ -22,11 +22,11 @@ class Transaction(models.Model):
         ('expense', 'Expense'),
     ]
 
-    account = models.ForeignKey(Account, on_delete=models.CASCADE)  # Link to an account
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
     transaction_type = models.CharField(max_length=10, choices=TRANSACTION_TYPES)
     amount = models.DecimalField(max_digits=12, decimal_places=0)
-    description = models.TextField(blank=True, null=True)  # Optional
-    date = models.DateTimeField(auto_now_add=True)  # Automatically record the date
+    description = models.TextField(blank=True, null=True)
+    date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.get_transaction_type_display()}: {self.amount} Rwf on {self.date}"
+        return f"{self.get_transaction_type_display()} - {self.amount} Rwf on {self.date}"
