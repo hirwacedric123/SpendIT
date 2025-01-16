@@ -40,14 +40,14 @@ class AccountForm(forms.ModelForm):
 class TransactionForm(forms.ModelForm):
     class Meta:
         model = Transaction
-        fields = ['account', 'transaction_type', 'amount', 'description', 'category', 'subcategory', 'date']
+        fields = ['account', 'transaction_type', 'amount','category', 'subcategory',  'description', 'date']
         widgets = {
             'account': forms.Select(attrs={'class': 'form-control'}),
             'transaction_type': forms.Select(attrs={'class': 'form-control'}),
             'amount': forms.NumberInput(attrs={'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'class': 'form-control'}),
             'category': forms.Select(attrs={'class': 'form-control', 'id': 'category-select'}),
             'subcategory': forms.Select(attrs={'class': 'form-control', 'id': 'subcategory-select'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
             'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
         }
     
