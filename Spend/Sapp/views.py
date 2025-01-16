@@ -6,8 +6,10 @@ from .forms import SignupForm, LoginForm, AccountForm,TransactionForm, BudgetFor
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Account, Transaction, Budget
+from .models import Account, Transaction, Budget, Subcategory
 from django.db.models import Sum
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
 
@@ -130,6 +132,17 @@ def add_transaction_view(request):
     }
     return render(request, 'add_transaction.html', context)
 
+
+@csrf_exempt
+def load_subcategories(request):
+    """
+    AJAX view to load subcategories based on the selected category.
+    """
+    category_id = request.GET.get('category_id')
+    if category_id:
+        subcategories = Subcategory.objects.filter(category_id=category_id).values('id', 'name')
+        return JsonResponse(list(subcategories), safe=False)
+    return JsonResponse({'error': 'Invalid category ID'}, status=400)
 
 
 @login_required
