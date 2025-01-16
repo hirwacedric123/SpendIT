@@ -72,3 +72,11 @@ class CategoryBudget(models.Model):
 
     def __str__(self):
         return f"{self.category.name} Budget: {self.budget_amount} Rwf"
+
+class Subcategory(models.Model):
+    name = models.CharField(max_length=100)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="subcategories")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.category.name} > {self.name}"
