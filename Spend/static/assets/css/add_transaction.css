@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #000000; /* Black background for dark mode */
+    background-color: #1a1a1a; /* Slightly lighter black */
     color: #ecf0f1; /* Light text for readability */
     line-height: 1.6;
 }
@@ -11,23 +11,23 @@ body {
 /* Container Styles */
 .container {
     margin: 40px auto;
-    max-width: 600px;
-    background-color: rgba(44, 62, 80, 0.9); /* Dark background */
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    background-color: rgba(44, 62, 80, 0.95); /* Rich dark background */
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
     color: #ecf0f1;
-    width: 400px;
 }
 
 /* Page Header */
 .page-header h1 {
     text-align: center;
-    font-size: 28px;
+    font-size: 30px;
+    font-weight: bold;
     color: #ecf0f1;
-    margin-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding-bottom: 10px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 15px;
 }
 
 /* Form Container */
@@ -42,33 +42,42 @@ body {
 .form-container select,
 .form-container textarea {
     display: block;
-    margin: 10px auto; /* Spacing between fields */
-    width: 90%; /* Responsive width */
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background-color: rgba(44, 62, 80, 0.4);
+    margin: 15px auto; /* Spacing between fields */
+    width: 90%; /* Better width for alignment */
+    padding: 14px;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
     color: #ecf0f1;
     font-size: 16px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
 }
 
 .form-container input:focus,
 .form-container select:focus,
 .form-container textarea:focus {
-    border: 1px solid rgba(255, 255, 255, 0.6); /* Highlight border */
-    background-color: rgba(44, 62, 80, 0.6); /* Slightly brighter */
+    border: 2px solid #3498db; /* Highlight border */
+    background-color: rgba(255, 255, 255, 0.15); /* Slightly brighter */
+    outline: none;
+}
+
+/* Label Styling */
+.form-container label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: #ecf0f1;
 }
 
 /* Buttons */
 .btn {
     display: inline-block;
-    margin-top: 15px;
-    padding: 10px 20px;
+    margin-top: 20px;
+    padding: 12px 25px;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
+    border-radius: 10px;
+    font-size: 18px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
@@ -79,26 +88,30 @@ body {
 .btn-primary {
     background-color: #3498db;
     color: #ecf0f1;
+    font-weight: bold;
 }
 
 .btn-primary:hover {
     background-color: #2980b9;
+    transform: scale(1.05); /* Slight scaling effect */
 }
 
 /* Secondary Button */
 .btn-secondary {
     background-color: rgba(255, 255, 255, 0.2);
     color: #ecf0f1;
+    font-weight: bold;
 }
 
 .btn-secondary:hover {
     background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05); /* Slight scaling effect */
 }
 
 /* Link Button */
 a.btn {
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 12px 25px;
     display: inline-block;
 }
 
@@ -108,14 +121,25 @@ a.btn-secondary {
     text-align: center;
 }
 
+/* Tooltip for Placeholder Descriptions */
+input::placeholder, select::placeholder {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.6);
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .container {
-        padding: 15px;
+        padding: 20px;
     }
 
     .form-container input,
     .form-container select {
-        width: 100%;
+        width: 100%; /* Full width for smaller screens */
+    }
+
+    .btn {
+        font-size: 16px;
+        padding: 10px 20px;
     }
 }
