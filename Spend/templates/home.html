@@ -64,17 +64,29 @@
         <section class="budget-overview">
             <h2>Budget Overview</h2>
             {% if budget %}
-                <p>Total Budget: <span>{{ budget.total_budget }} Rwf</span></p>
-                <p>Total Expenses: <span>{{ total_expenses }} Rwf</span></p>
-                <p>Remaining Budget: 
-                    {% if remaining_budget < 0 %}
-                        <span class="over-budget">{{ remaining_budget }} Rwf (Over Budget!)</span>
-                    {% else %}
-                        {{ remaining_budget }} Rwf
-                    {% endif %}
-                </p>
+            <div class="budget-card-overview">
+                <div class="card">
+                    <h3>Total Budget</h3>
+                    <p>{{ budget.total_budget }} Rwf</p>
+                </div>
+                <div class="card">
+                    <h3>Total Expenses</h3>
+                    <p>{{ total_expenses }} Rwf</p>
+                </div>
+                <div class="card">
+                    <h3>Remaining Budget</h3>
+                    <p>
+                        {% if remaining_budget < 0 %}
+                            <span class="over-budget">{{ remaining_budget }} Rwf (Over Budget!)</span>
+                        {% else %}
+                            {{ remaining_budget }} Rwf
+                        {% endif %}
+                    </p>
+                </div>
+
+            </div>
                 {% if budget_overrun %}
-                    <div class="alert-danger">
+                    <div class="alert alert-danger">
                         <strong>Warning!</strong> You have exceeded your budget.
                     </div>
                 {% endif %}
@@ -83,6 +95,7 @@
                 <p>No budget set. <a href="{% url 'manage_budget' %}">Set a Budget</a></p>
             {% endif %}
         </section>
+        
         <a href="/logout" class="btn btn-secondary">Logout</a>
     </main>
 </body>
