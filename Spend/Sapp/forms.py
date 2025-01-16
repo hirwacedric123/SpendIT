@@ -40,21 +40,16 @@ class AccountForm(forms.ModelForm):
 class TransactionForm(forms.ModelForm):
     class Meta:
         model = Transaction
-        fields = ['account', 'transaction_type', 'amount', 'description', 'category', 'subcategory']
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['category'].queryset = Category.objects.all()
-        self.fields['subcategory'].queryset = Subcategory.objects.none()
-
-        if 'category' in self.data:
-            try:
-                category_id = int(self.data.get('category'))
-                self.fields['subcategory'].queryset = Subcategory.objects.filter(category_id=category_id)
-            except (ValueError, TypeError):
-                pass  # Invalid input; ignore and fallback to empty queryset
-        elif self.instance.pk:
-            self.fields['subcategory'].queryset = self.instance.category.subcategories.all()
+        fields = ['account', 'transaction_type', 'amount', 'description', 'category', 'subcategory', 'date']
+        widgets = {
+            'account': forms.Select(attrs={'class': 'form-control'}),
+            'transaction_type': forms.Select(attrs={'class': 'form-control'}),
+            'amount': forms.NumberInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'category': forms.Select(attrs={'class': 'form-control', 'id': 'category-select'}),
+            'subcategory': forms.Select(attrs={'class': 'form-control', 'id': 'subcategory-select'}),
+            'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+        }
     
 
 class BudgetForm(forms.ModelForm):
