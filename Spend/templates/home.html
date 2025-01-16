@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}">
 </head>
 <body>
     <header>
@@ -11,21 +13,23 @@
     </header>
 
     <main>
-        <section>
+        <section class="account-overview">
             <h2>Account Overview</h2>
             <ul>
                 {% for account in accounts %}
-                    <li>{{ account.name }} ({{ account.get_account_type_display }}): {{ account.balance }} Rwf</li>
+                    <li>
+                        <strong>{{ account.name }}</strong> 
+                        ({{ account.get_account_type_display }}): 
+                        <span class="balance">{{ account.balance }} Rwf</span>
+                    </li>
                 {% empty %}
                     <li>No accounts added yet.</li>
                 {% endfor %}
             </ul>
-            <a href="{% url 'add_account' %}" class="btn btn-secondary">Add New Account</a>
+            <a href="{% url 'add_account' %}" class="btn btn-primary">Add New Account</a>
         </section>
         
-
-        <!-- Recent Transactions -->
-        <section>
+        <section class="recent-transactions">
             <h2>Recent Transactions</h2>
             <table>
                 <thead>
@@ -42,7 +46,7 @@
                         <tr>
                             <td>{{ transaction.date }}</td>
                             <td>{{ transaction.get_transaction_type_display }}</td>
-                            <td>{{ transaction.amount }} Rwf</td>
+                            <td class="amount">{{ transaction.amount }} Rwf</td>
                             <td>{{ transaction.description|default:"N/A" }}</td>
                             <td>{{ transaction.account.name }}</td>
                         </tr>
@@ -53,34 +57,32 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <a href="{% url 'add_transaction' %}" class="btn btn-secondary">Add New Transaction</a>
+            <a href="{% url 'add_transaction' %}" class="btn btn-primary">Add New Transaction</a>
         </section>
 
-        <section>
+        <section class="budget-overview">
             <h2>Budget Overview</h2>
             {% if budget %}
-                <p>Total Budget: {{ budget.total_budget }} Rwf</p>
-                <p>Total Expenses: {{ total_expenses }} Rwf</p>
+                <p>Total Budget: <span>{{ budget.total_budget }} Rwf</span></p>
+                <p>Total Expenses: <span>{{ total_expenses }} Rwf</span></p>
                 <p>Remaining Budget: 
                     {% if remaining_budget < 0 %}
-                        <span style="color: red;">{{ remaining_budget }} Rwf (Over Budget!)</span>
+                        <span class="over-budget">{{ remaining_budget }} Rwf (Over Budget!)</span>
                     {% else %}
                         {{ remaining_budget }} Rwf
                     {% endif %}
                 </p>
                 {% if budget_overrun %}
-                    <div class="alert alert-danger">
+                    <div class="alert-danger">
                         <strong>Warning!</strong> You have exceeded your budget.
                     </div>
                 {% endif %}
-                <a href="{% url 'manage_budget' %}" class="btn btn-secondary">Update Budget</a>
+                <a href="{% url 'manage_budget' %}" class="btn btn-primary">Update Budget</a>
             {% else %}
                 <p>No budget set. <a href="{% url 'manage_budget' %}">Set a Budget</a></p>
             {% endif %}
         </section>
-        
-
-        <a href="/logout">Logout</a>
+        <a href="/logout" class="btn btn-secondary">Logout</a>
     </main>
 </body>
 </html>
