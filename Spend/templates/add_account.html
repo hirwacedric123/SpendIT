@@ -1,17 +1,25 @@
+{%load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Account</title>
+    <link rel="stylesheet" href="{% static 'assets/css/add_account.css' %}">
 </head>
 <body>
-    <h1>Add Account</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Add Account</button>
-    </form>
-    <a href="{% url 'home' %}">Back to Dashboard</a>
+    <div class="container">
+        <header class="page-header">
+            <h1>Add Account</h1>
+        </header>
+        <main>
+            <form method="post" class="form-container">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Add Account</button>
+            </form>
+            <a href="{% url 'home' %}" class="btn btn-secondary">Back to Dashboard</a>
+        </main>
+    </div>
 </body>
 </html>
