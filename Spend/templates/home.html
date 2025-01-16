@@ -15,19 +15,20 @@
     <main>
         <section class="account-overview">
             <h2>Account Overview</h2>
-            <ul>
+            <div class="account-cards">
                 {% for account in accounts %}
-                    <li>
-                        <strong>{{ account.name }}</strong> 
-                        ({{ account.get_account_type_display }}): 
-                        <span class="balance">{{ account.balance }} Rwf</span>
-                    </li>
+                    <div class="account-card {% if account.balance < 0 %}negative{% else %}positive{% endif %}">
+                        <h3>{{ account.name }}</h3>
+                        <p>Type: {{ account.get_account_type_display }}</p>
+                        <p class="balance">{{ account.balance }} Rwf</p>
+                    </div>
                 {% empty %}
-                    <li>No accounts added yet.</li>
+                    <p>No accounts added yet.</p>
                 {% endfor %}
-            </ul>
+            </div>
             <a href="{% url 'add_account' %}" class="btn btn-primary">Add New Account</a>
         </section>
+        
         
         <section class="recent-transactions">
             <h2>Recent Transactions</h2>
