@@ -31,10 +31,26 @@ class Transaction(models.Model):
     def __str__(self):
         return f"{self.get_transaction_type_display()} - {self.amount} Rwf on {self.date}"
 
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
 class Budget(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     total_budget = models.DecimalField(max_digits=12, decimal_places=0, default=0)
+    categories = models.ManyToManyField(Category, through='CategoryBudget')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.user.username}'s Budget: {self.total_budget} Rwf"
+
+class CategoryBudget(models.Model):
+    budget = models.ForeignKey(Budget, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    budget_amount = models.DecimalField(max_digits=12, decimal_places=0, default=0)
+
+    def __str__(self):
+        return f"{self.category.name} Budget: {self.budget_amount} Rwf"
