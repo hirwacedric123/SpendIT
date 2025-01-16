@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import SignupForm, LoginForm, AccountForm,TransactionForm, BudgetForm, CategoryForm
+from .forms import SignupForm, LoginForm, AccountForm,TransactionForm, BudgetForm, CategoryForm,SubcategoryForm
+
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -168,3 +169,16 @@ def add_category_view(request):
         'form': form,
     }
     return render(request, 'add_category.html', context)
+
+
+@login_required
+def add_subcategory(request):
+    if request.method == 'POST':
+        form = SubcategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Subcategory added successfully!')
+            return redirect('home')  # Redirect to the home or another page
+    else:
+        form = SubcategoryForm()
+    return render(request, 'add_subcategory.html', {'form': form})

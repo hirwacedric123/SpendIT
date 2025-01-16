@@ -65,7 +65,7 @@ class BudgetForm(forms.ModelForm):
             'total_budget': forms.NumberInput(attrs={'class': 'form-control'}),
         }
 
-        
+
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
@@ -77,4 +77,14 @@ class CategoryForm(forms.ModelForm):
         labels = {
             'type': 'Transaction Type',
             'name': 'Category Name',
+        }
+
+
+class SubcategoryForm(forms.ModelForm):
+    class Meta:
+        model = Subcategory
+        fields = ['category', 'name']  # Select category and enter subcategory name
+        widgets = {
+            'category': forms.Select(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter subcategory name'}),
         }
