@@ -13,36 +13,45 @@
         <h1>Add Transaction</h1>
         <form method="post">
             {% csrf_token %}
+            
             <div class="form-group">
-                {{ form.account.label_tag }}
+                <label for="{{ form.account.id_for_label }}">{{ form.account.label }}</label>
                 {{ form.account }}
             </div>
+        
             <div class="form-group">
-                {{ form.transaction_type.label_tag }}
+                <label for="{{ form.transaction_type.id_for_label }}">{{ form.transaction_type.label }}</label>
                 {{ form.transaction_type }}
             </div>
+        
             <div class="form-group">
-                {{ form.amount.label_tag }}
+                <label for="{{ form.amount.id_for_label }}">{{ form.amount.label }}</label>
                 {{ form.amount }}
             </div>
+        
             <div class="form-group">
-                {{ form.description.label_tag }}
+                <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
                 {{ form.description }}
             </div>
+        
             <div class="form-group">
-                {{ form.category.label_tag }}
+                <label for="{{ form.category.id_for_label }}">{{ form.category.label }}</label>
                 {{ form.category }}
             </div>
+        
             <div class="form-group">
-                {{ form.subcategory.label_tag }}
+                <label for="{{ form.subcategory.id_for_label }}">{{ form.subcategory.label }}</label>
                 {{ form.subcategory }}
             </div>
+        
             <div class="form-group">
-                {{ form.date.label_tag }}
+                <label for="{{ form.date.id_for_label }}">{{ form.date.label }}</label>
                 {{ form.date }}
             </div>
+        
             <button type="submit" class="btn btn-primary">Add Transaction</button>
         </form>
+        
         <a href="{% url 'home' %}" class="btn btn-secondary">Back to Dashboard</a>
     </div>
 
