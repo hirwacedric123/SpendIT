@@ -77,14 +77,14 @@
                     <h3>Remaining Budget</h3>
                     <p>
                         {% if remaining_budget < 0 %}
-                            <span class="over-budget">{{ remaining_budget }} Rwf (Over Budget!)</span>
+                            <span class="over-budget" id="remaining-budget">{{ remaining_budget }} Rwf (Over Budget!)</span>
                         {% else %}
-                            {{ remaining_budget }} Rwf
+                            <span id="remaining-budget">{{ remaining_budget }} Rwf</span>
                         {% endif %}
                     </p>
                 </div>
-
             </div>
+        
                 {% if budget_overrun %}
                     <div class="alert alert-danger">
                         <strong>Warning!</strong> You have exceeded your budget.
@@ -96,7 +96,24 @@
             {% endif %}
         </section>
         
+        <!-- JavaScript Section to Check Budget -->
+
+        
+        
         <a href="/logout" class="btn btn-secondary">Logout</a>
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Extract the remaining budget value from the text content of the element
+            const remainingBudgetText = document.getElementById('remaining-budget').textContent;
+            const remainingBudget = parseFloat(remainingBudgetText.replace(' Rwf', '').trim()); // Remove "Rwf" and parse the number
+    
+            // Check if the budget is exceeded and show an alert
+            if (remainingBudget < 0) {
+                alert('Warning! You have exceeded your budget!');
+            }
+        });
+    </script>
 </body>
 </html>
