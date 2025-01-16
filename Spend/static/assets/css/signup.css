@@ -8,7 +8,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
 /* Signup Container */
@@ -19,6 +18,8 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     width: 400px;
     max-width: 90%; /* Responsive width */
+    margin-top: 30px;
+
 }
 
 /* Form Heading */
@@ -28,7 +29,6 @@ body {
     font-size: 26px;
     color: #ecf0f1;
 }
-
 /* Input Fields */
 input,
 select,
@@ -43,7 +43,7 @@ textarea {
     width: 100%;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* Reduced from 20px to 10px */
 }
 
 input:focus,
@@ -69,7 +69,7 @@ button[type="submit"] {
     font-size: 16px;
     cursor: pointer;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 10px; /* Slight adjustment to match the reduced spacing */
     transition: background-color 0.3s ease;
 }
 
