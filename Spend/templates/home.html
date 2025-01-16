@@ -15,6 +15,8 @@
 
     <main>
         <section class="account-overview">
+            <a href="{% url 'add_category' %}" class="btn btn-primary">Add Category</a>
+
             <h2>Account Overview</h2>
             <div class="account-cards">
                 {% for account in accounts %}

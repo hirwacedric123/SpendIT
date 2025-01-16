@@ -21,5 +21,29 @@
             <a href="{% url 'home' %}" class="btn btn-secondary">Back to Dashboard</a>
         </div>
     </div>
+
+    <script>
+        document.getElementById('id_category').addEventListener('change', function() {
+            const categoryId = this.value;
+            const subcategoryField = document.getElementById('id_subcategory');
+    
+            // Clear subcategory options
+            subcategoryField.innerHTML = '<option value="">---------</option>';
+    
+            if (categoryId) {
+                fetch(`/get_subcategories/${categoryId}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.subcategories.forEach(subcategory => {
+                            const option = document.createElement('option');
+                            option.value = subcategory.id;
+                            option.textContent = subcategory.name;
+                            subcategoryField.appendChild(option);
+                        });
+                    });
+            }
+        });
+    </script>
+    
 </body>
 </html>

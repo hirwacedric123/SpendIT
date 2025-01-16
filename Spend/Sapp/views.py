@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import SignupForm, LoginForm, AccountForm,TransactionForm, BudgetForm
+from .forms import SignupForm, LoginForm, AccountForm,TransactionForm, BudgetForm, CategoryForm
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -130,6 +130,7 @@ def add_transaction_view(request):
     return render(request, 'add_transaction.html', context)
 
 
+
 @login_required
 def manage_budget_view(request):
     try:
@@ -151,3 +152,19 @@ def manage_budget_view(request):
         'form': form,
     }
     return render(request, 'manage_budget.html', context)
+
+@login_required
+def add_category_view(request):
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            category = form.save(commit=False)
+            category.save()
+            return redirect('home')  # Redirect back to the dashboard
+    else:
+        form = CategoryForm()
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'add_category.html', context)

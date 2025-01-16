@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ValidationError
-from .models import Account,Transaction, Budget, Category
+from .models import Account,Transaction, Budget, Category, Subcategory
 
 class SignupForm(forms.ModelForm):
     confirm_password = forms.CharField(widget=forms.PasswordInput, label="Confirm Password")
@@ -40,13 +40,21 @@ class AccountForm(forms.ModelForm):
 class TransactionForm(forms.ModelForm):
     class Meta:
         model = Transaction
-        fields = ['account', 'transaction_type', 'amount', 'description']
-        widgets = {
-            'account': forms.Select(attrs={'class': 'form-control'}),
-            'transaction_type': forms.Select(attrs={'class': 'form-control'}),
-            'amount': forms.NumberInput(attrs={'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
-        }
+        fields = ['account', 'transaction_type', 'amount', 'description', 'category', 'subcategory']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['category'].queryset = Category.objects.all()
+        self.fields['subcategory'].queryset = Subcategory.objects.none()
+
+        if 'category' in self.data:
+            try:
+                category_id = int(self.data.get('category'))
+                self.fields['subcategory'].queryset = Subcategory.objects.filter(category_id=category_id)
+            except (ValueError, TypeError):
+                pass  # Invalid input; ignore and fallback to empty queryset
+        elif self.instance.pk:
+            self.fields['subcategory'].queryset = self.instance.category.subcategories.all()
     
 
 class BudgetForm(forms.ModelForm):
@@ -57,11 +65,16 @@ class BudgetForm(forms.ModelForm):
             'total_budget': forms.NumberInput(attrs={'class': 'form-control'}),
         }
 
-
+        
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
-        fields = ['name']
+        fields = ['type', 'name']
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'type': forms.Select(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Category Name'}),
+        }
+        labels = {
+            'type': 'Transaction Type',
+            'name': 'Category Name',
         }
