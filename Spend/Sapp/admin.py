@@ -7,3 +7,5 @@ admin.site.register(Account)
 admin.site.register(Transaction)
 admin.site.register(Budget)
 admin.site.register(Category)
+
+admin.site.site_header = "Spend Admin"
