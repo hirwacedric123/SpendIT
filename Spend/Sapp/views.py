@@ -182,3 +182,4 @@ def add_subcategory(request):
     else:
         form = SubcategoryForm()
     return render(request, 'add_subcategory.html', {'form': form})
+
