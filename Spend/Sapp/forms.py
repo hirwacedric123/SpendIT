@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ValidationError
-from .models import Account,Transaction, Budget
+from .models import Account,Transaction, Budget, Category
 
 class SignupForm(forms.ModelForm):
     confirm_password = forms.CharField(widget=forms.PasswordInput, label="Confirm Password")
@@ -55,4 +55,13 @@ class BudgetForm(forms.ModelForm):
         fields = ['total_budget']
         widgets = {
             'total_budget': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
+
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
         }
