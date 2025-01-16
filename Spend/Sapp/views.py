@@ -57,7 +57,7 @@ def home_view(request):
     accounts = Account.objects.filter(user=request.user)
     transactions = Transaction.objects.filter(account__user=request.user).order_by('-date')
     
-    # Try to get the user's budget
+    # Get the user's budget if it exists
     try:
         budget = Budget.objects.get(user=request.user)
     except Budget.DoesNotExist:
@@ -70,15 +70,21 @@ def home_view(request):
 
     remaining_budget = budget.total_budget - total_expenses if budget else None
 
+    # Create a notification for budget overrun
+    budget_overrun = False
+    if remaining_budget and remaining_budget < 0:
+        budget_overrun = True
+
     context = {
         'accounts': accounts,
         'transactions': transactions,
         'budget': budget,
         'total_expenses': total_expenses,
         'remaining_budget': remaining_budget,
+        'budget_overrun': budget_overrun,
     }
-    return render(request, 'home.html', context)
 
+    return render(request, 'home.html', context)
 
 @login_required
 def add_account_view(request):

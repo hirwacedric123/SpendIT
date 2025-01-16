@@ -68,11 +68,17 @@
                         {{ remaining_budget }} Rwf
                     {% endif %}
                 </p>
+                {% if budget_overrun %}
+                    <div class="alert alert-danger">
+                        <strong>Warning!</strong> You have exceeded your budget.
+                    </div>
+                {% endif %}
                 <a href="{% url 'manage_budget' %}" class="btn btn-secondary">Update Budget</a>
             {% else %}
                 <p>No budget set. <a href="{% url 'manage_budget' %}">Set a Budget</a></p>
             {% endif %}
         </section>
+        
 
         <a href="/logout">Logout</a>
     </main>
