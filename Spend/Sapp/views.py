@@ -12,6 +12,10 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 
+from django.db.models import Sum
+from django.utils.timezone import localtime, now
+from datetime import timedelta
+
 
 def signup_view(request):
     if request.method == 'POST':
@@ -196,6 +200,43 @@ def add_subcategory(request):
         form = SubcategoryForm()
     return render(request, 'add_subcategory.html', {'form': form})
 
+def get_daily_summary(user):
+    today = localtime(now()).date()
+    daily_transactions = Transaction.objects.filter(
+        account__user=user,
+        date__date=today,
+        is_deleted=False
+    )
+    summary = daily_transactions.values('transaction_type').annotate(
+        total_amount=Sum('amount')
+    )
+    return {item['transaction_type']: item['total_amount'] for item in summary}
+
+def get_weekly_summary(user):
+    today = localtime(now()).date()
+    start_of_week = today - timedelta(days=7)
+    weekly_transactions = Transaction.objects.filter(
+        account__user=user,
+        date__date__gte=start_of_week,
+        date__date__lte=today,
+        is_deleted=False
+    )
+    summary = weekly_transactions.values('transaction_type').annotate(
+        total_amount=Sum('amount')
+    )
+    return {item['transaction_type']: item['total_amount'] for item in summary}
+
+def get_daily_summary(user):
+    today = localtime(now()).date()
+    daily_transactions = Transaction.objects.filter(
+        account__user=user,
+        date__date=today,
+        is_deleted=False
+    )
+    summary = daily_transactions.values('transaction_type').annotate(
+        total_amount=Sum('amount')
+    )
+    return {item['transaction_type']: item['total_amount'] for item in summary}
 
 @login_required
 def transaction_summary_view(request):
