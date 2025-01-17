@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #121212; /* Dark background */
+    background: rgba(27, 42, 56, 0.95); /* Slightly lighter black */ /* Dark background */
     color: #ecf0f1; /* Light text color */
     margin: 0;
     padding: 0;
