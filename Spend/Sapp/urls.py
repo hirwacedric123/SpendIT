@@ -11,6 +11,7 @@ urlpatterns = [
     path('add-category/', views.add_category_view, name='add_category'),
     path('add-subcategory/', views.add_subcategory, name='add_subcategory'),
     path('load-subcategories/', views.load_subcategories, name='load_subcategories'),
+    path('transaction-summary/', views.transaction_summary_view, name='transaction_summary'),
    
     path('logout/', views.logout_view, name='logout'),
 ]
