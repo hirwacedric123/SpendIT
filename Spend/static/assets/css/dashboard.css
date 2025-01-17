@@ -20,7 +20,7 @@ main {
 
 section {
     margin-bottom: 30px;
-    background-color: #1e1e1e; /* Darker section background */
+    background-color: rgba(44, 62, 80, 0.9); /* Darker section background */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -129,6 +129,7 @@ table tbody tr:nth-child(even) {
     color: #ecf0f1; /* Text color */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-bottom: 20px;
+
 }
 
 .account-card h3 {
