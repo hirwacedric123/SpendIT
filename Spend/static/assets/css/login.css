@@ -1,7 +1,7 @@
 /* General Body Styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #1c1c1c; /* Dark background */
+    background: rgba(27, 42, 56, 0.95);; /* Dark background */
     color: #ecf0f1; /* Light text */
     margin: 0;
     padding: 0;
