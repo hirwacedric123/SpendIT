@@ -196,3 +196,17 @@ def add_subcategory(request):
         form = SubcategoryForm()
     return render(request, 'add_subcategory.html', {'form': form})
 
+
+@login_required
+def transaction_summary_view(request):
+    user = request.user
+    daily_summary = get_daily_summary(user)
+    weekly_summary = get_weekly_summary(user)
+    monthly_summary = get_monthly_summary(user)
+
+    context = {
+        'daily_summary': daily_summary,
+        'weekly_summary': weekly_summary,
+        'monthly_summary': monthly_summary,
+    }
+    return render(request, 'transaction_summary.html', context)
