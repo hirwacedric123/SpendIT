@@ -1,8 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils.timezone import now
 from django.core.exceptions import ValidationError
 from django.db.models import Sum
+from django.utils.timezone import localtime, now
+from datetime import timedelta
 
 class Account(models.Model):
     ACCOUNT_TYPES = [
@@ -117,3 +118,46 @@ class CategoryBudget(models.Model):
 
     def __str__(self):
         return f"{self.category.name} Budget: {self.budget_amount} Rwf"
+
+
+def get_daily_summary(user):
+    today = localtime(now()).date()
+    daily_transactions = Transaction.objects.filter(
+        account__user=user,
+        date__date=today,
+        is_deleted=False
+    )
+    summary = daily_transactions.values('transaction_type').annotate(
+        total_amount=Sum('amount')
+    )
+    return {item['transaction_type']: item['total_amount'] for item in summary}
+
+
+def get_weekly_summary(user):
+    today = localtime(now()).date()
+    start_of_week = today - timedelta(days=7)
+    weekly_transactions = Transaction.objects.filter(
+        account__user=user,
+        date__date__gte=start_of_week,
+        date__date__lte=today,
+        is_deleted=False
+    )
+    summary = weekly_transactions.values('transaction_type').annotate(
+        total_amount=Sum('amount')
+    )
+    return {item['transaction_type']: item['total_amount'] for item in summary}
+
+def get_monthly_summary(user):
+    today = localtime(now()).date()
+    first_day_of_month = today.replace(day=1)
+    monthly_transactions = Transaction.objects.filter(
+        account__user=user,
+        date__date__gte=first_day_of_month,
+        date__date__lte=today,
+        is_deleted=False
+    )
+    summary = monthly_transactions.values('transaction_type').annotate(
+        total_amount=Sum('amount')
+    )
+    return {item['transaction_type']: item['total_amount'] for item in summary}
+
