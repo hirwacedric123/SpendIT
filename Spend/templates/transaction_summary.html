@@ -11,17 +11,31 @@
     <div class="container">
         <h1>Transaction Summary</h1>
         <div class="summary-container">
-            <h2>Daily Summary</h2>
-            <p>Income: {{ daily_summary.income|default:"0" }} Rwf</p>
-            <p>Expenses: {{ daily_summary.expense|default:"0" }} Rwf</p>
+            <div class="summary-section">
+                <h2>Daily Summary</h2>
+                <p>Income: {{ daily_summary.income|default:"0" }} Rwf</p>
+                <p>Expenses: {{ daily_summary.expense|default:"0" }} Rwf</p>
+            </div>
+
+            <div class="summary-section">
+                <h2>Weekly Summary</h2>
+                <p>Income: {{ weekly_summary.income|default:"0" }} Rwf</p>
+                <p>Expenses: {{ weekly_summary.expense|default:"0" }} Rwf</p>
+
+            </div>
+
+            <div class="summary-section">
+
+                <h2>Monthly Summary</h2>
+                <p>Income: {{ monthly_summary.income|default:"0" }} Rwf</p>
+                <p>Expenses: {{ monthly_summary.expense|default:"0" }} Rwf</p>
+
+            </div>
+
     
-            <h2>Weekly Summary</h2>
-            <p>Income: {{ weekly_summary.income|default:"0" }} Rwf</p>
-            <p>Expenses: {{ weekly_summary.expense|default:"0" }} Rwf</p>
+
     
-            <h2>Monthly Summary</h2>
-            <p>Income: {{ monthly_summary.income|default:"0" }} Rwf</p>
-            <p>Expenses: {{ monthly_summary.expense|default:"0" }} Rwf</p>
+
 
         </div>
 
