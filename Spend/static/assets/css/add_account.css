@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #000000; /* Black background for dark mode */
+    background: rgba(27, 42, 56, 0.95); /* Black background for dark mode */
     color: #ecf0f1; /* Light text for readability */
     line-height: 1.6;
 }
