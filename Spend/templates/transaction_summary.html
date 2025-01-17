@@ -5,36 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transaction Summary</title>
-    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/transaction_summary.css' %}">
 </head>
 <body>
     <div class="container">
         <h1>Transaction Summary</h1>
         <div class="summary-container">
-            <!-- Daily Summary -->
-            <div class="summary-section">
-                <h2>Daily Summary</h2>
-                <p><strong>Income:</strong> {{ daily_summary.income_total|default:0 }} Rwf</p>
-                <p><strong>Expense:</strong> {{ daily_summary.expense_total|default:0 }} Rwf</p>
-            </div>
+            <h2>Daily Summary</h2>
+            <p>Income: {{ daily_summary.income|default:"0" }} Rwf</p>
+            <p>Expenses: {{ daily_summary.expense|default:"0" }} Rwf</p>
+    
+            <h2>Weekly Summary</h2>
+            <p>Income: {{ weekly_summary.income|default:"0" }} Rwf</p>
+            <p>Expenses: {{ weekly_summary.expense|default:"0" }} Rwf</p>
+    
+            <h2>Monthly Summary</h2>
+            <p>Income: {{ monthly_summary.income|default:"0" }} Rwf</p>
+            <p>Expenses: {{ monthly_summary.expense|default:"0" }} Rwf</p>
 
-            <!-- Weekly Summary -->
-            <div class="summary-section">
-                <h2>Weekly Summary</h2>
-                <p><strong>Income:</strong> {{ weekly_summary.income_total|default:0 }} Rwf</p>
-                <p><strong>Expense:</strong> {{ weekly_summary.expense_total|default:0 }} Rwf</p>
-            </div>
-
-            <!-- Monthly Summary -->
-            <div class="summary-section">
-                <h2>Monthly Summary</h2>
-                <p><strong>Income:</strong> {{ monthly_summary.income_total|default:0 }} Rwf</p>
-                <p><strong>Expense:</strong> {{ monthly_summary.expense_total|default:0 }} Rwf</p>
-            </div>
         </div>
 
-        <a href="{% url 'home' %}" class="btn btn-primary">Back to Dashboard</a>
     </div>
+    
 </body>
 </html>
