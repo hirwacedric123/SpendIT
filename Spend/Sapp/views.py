@@ -226,14 +226,17 @@ def get_weekly_summary(user):
     )
     return {item['transaction_type']: item['total_amount'] for item in summary}
 
-def get_daily_summary(user):
+
+def get_monthly_summary(user):
     today = localtime(now()).date()
-    daily_transactions = Transaction.objects.filter(
+    first_day_of_month = today.replace(day=1)
+    monthly_transactions = Transaction.objects.filter(
         account__user=user,
-        date__date=today,
+        date__date__gte=first_day_of_month,
+        date__date__lte=today,
         is_deleted=False
     )
-    summary = daily_transactions.values('transaction_type').annotate(
+    summary = monthly_transactions.values('transaction_type').annotate(
         total_amount=Sum('amount')
     )
     return {item['transaction_type']: item['total_amount'] for item in summary}
