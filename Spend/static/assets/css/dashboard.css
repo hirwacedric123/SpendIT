@@ -113,6 +113,7 @@ table tbody tr:nth-child(even) {
 
 .account-overview {
     margin-top: 20px;
+    background-color: rgba(44, 62, 80, 0.9);
 }
 
 .account-cards {
