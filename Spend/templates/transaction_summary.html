@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transaction Summary</title>
     <link rel="stylesheet" href="{% static 'assets/css/transaction_summary.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
 </head>
 <body>
     <div class="container">
@@ -21,21 +22,69 @@
                 <h2>Weekly Summary</h2>
                 <p>Income: {{ weekly_summary.income|default:"0" }} Rwf</p>
                 <p>Expenses: {{ weekly_summary.expense|default:"0" }} Rwf</p>
-
             </div>
 
             <div class="summary-section">
-
                 <h2>Monthly Summary</h2>
                 <p>Income: {{ monthly_summary.income|default:"0" }} Rwf</p>
                 <p>Expenses: {{ monthly_summary.expense|default:"0" }} Rwf</p>
-
             </div>
-
         </div>
-        <a href="{% url 'home' %}" class="btn btn-primary">Back to Dashboard</a>
 
+        <!-- Chart Section -->
+        <div class="chart-container">
+            <h2>Income vs Expenses (Last 7 Days)</h2>
+            <canvas id="transactionChart" width="400" height="200"></canvas>
+        </div>
+
+        <a href="{% url 'home' %}" class="btn btn-primary">Back to Dashboard</a>
     </div>
-    
+
+    <script>
+        const ctx = document.getElementById('transactionChart').getContext('2d');
+
+        // Fetch data from the API
+        fetch("{% url 'transaction_summary_data' %}")
+            .then(response => response.json())
+            .then(data => {
+                const chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.dates, // Dates on X-axis
+                        datasets: [
+                            {
+                                label: 'Income',
+                                data: data.income, // Income data
+                                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1,
+                            },
+                            {
+                                label: 'Expense',
+                                data: data.expense, // Expense data
+                                backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                borderWidth: 1,
+                            },
+                        ],
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { position: 'top' },
+                            tooltip: { enabled: true },
+                        },
+                        scales: {
+                            x: { title: { display: true, text: 'Date' } },
+                            y: { 
+                                title: { display: true, text: 'Amount (Rwf)' },
+                                beginAtZero: true 
+                            },
+                        },
+                    },
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
 </body>
 </html>
