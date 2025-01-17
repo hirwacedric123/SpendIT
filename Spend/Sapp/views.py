@@ -254,3 +254,30 @@ def transaction_summary_view(request):
         'monthly_summary': monthly_summary,
     }
     return render(request, 'transaction_summary.html', context)
+
+
+def transaction_summary_data(request):
+    # Prepare date ranges for the last 7 days
+    today = now().date()
+    days = [(today - timedelta(days=i)).strftime('%Y-%m-%d') for i in range(6, -1, -1)]
+
+    # Aggregate income and expenses for each day
+    data = {
+        'dates': days,
+        'income': [],
+        'expense': []
+    }
+
+    for day in days:
+        daily_income = Transaction.objects.filter(
+            transaction_type='income', date__date=day
+        ).aggregate(total=Sum('amount'))['total'] or 0
+
+        daily_expense = Transaction.objects.filter(
+            transaction_type='expense', date__date=day
+        ).aggregate(total=Sum('amount'))['total'] or 0
+
+        data['income'].append(daily_income)
+        data['expense'].append(daily_expense)
+
+    return JsonResponse(data)
