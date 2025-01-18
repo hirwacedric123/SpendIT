@@ -6,7 +6,7 @@ from .forms import SignupForm, LoginForm, AccountForm,TransactionForm, BudgetFor
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Account, Transaction, Budget, Subcategory
+from .models import Account, Transaction, Budget, Subcategory, Category
 from django.db.models import Sum
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -61,8 +61,9 @@ def logout_view(request):
 
 @login_required
 def home_view(request):
+    # Fetch user accounts and transactions
     accounts = Account.objects.filter(user=request.user)
-    transactions = Transaction.objects.filter(account__user=request.user).order_by('-date')
+    transactions = Transaction.objects.filter(account__user=request.user).order_by('-date')[:5]  # Recent 5 transactions
     
     # Get the user's budget if it exists
     try:
@@ -72,7 +73,9 @@ def home_view(request):
 
     # Aggregate total expenses
     total_expenses = Transaction.objects.filter(
-        account__user=request.user, transaction_type='expense'
+        account__user=request.user,
+        transaction_type='expense',
+        is_deleted=False
     ).aggregate(Sum('amount'))['amount__sum'] or 0
 
     remaining_budget = budget.total_budget - total_expenses if budget else None
@@ -82,6 +85,11 @@ def home_view(request):
     if remaining_budget and remaining_budget < 0:
         budget_overrun = True
 
+    # Fetch categories and subcategories
+    expense_categories = Category.objects.filter(type='expense').prefetch_related('subcategories')
+    income_categories = Category.objects.filter(type='income').prefetch_related('subcategories')
+
+    # Prepare context for the template
     context = {
         'accounts': accounts,
         'transactions': transactions,
@@ -89,6 +97,8 @@ def home_view(request):
         'total_expenses': total_expenses,
         'remaining_budget': remaining_budget,
         'budget_overrun': budget_overrun,
+        'expense_categories': expense_categories,
+        'income_categories': income_categories,
     }
 
     return render(request, 'home.html', context)
