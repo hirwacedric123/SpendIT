@@ -191,6 +191,44 @@
                 alert('Warning! You have exceeded your budget!');
             }
         });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+            const transactionsSection = document.querySelector('.recent-transactions'); // or whatever section you want to update
+
+            if (form) {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();  // Prevent the page from reloading when the form is submitted
+                    
+                    // Create a new FormData object from the form
+                    const formData = new FormData(form);
+                    
+                    // Make an AJAX request
+                    fetch("{% url 'home' %}", {
+                        method: "GET",
+                        headers: {
+                            'Accept': 'application/json', // Telling the server we're expecting JSON in response
+                        },
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Update the section with new content
+                            transactionsSection.innerHTML = data.updated_html;
+                        } else {
+                            alert("Failed to apply filters.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert("Something went wrong.");
+                    });
+                });
+            }
+        });
+
+
     </script>
 </body>
 </html>
