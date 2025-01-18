@@ -1,0 +1,394 @@
+body {
+    font-family: Arial, sans-serif;
+    background: rgba(27, 42, 56, 0.95); /* Slightly lighter black */ /* Dark background */
+    color: #ecf0f1; /* Light text color */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgba(27, 42, 56, 0.95); /* Primary color for the header */
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+}
+header .logout{
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #e74c3c;
+    transition: background-color 0.3s;
+    height: 30px;
+    text-align: center;
+}
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 30px;
+    background-color: rgba(44, 62, 80, 0.9); /* Darker section background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+    border-bottom: 2px solid #3498db; /* Blue underline */
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+.balance {
+    font-weight: bold;
+    color: #3498db;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+table th, table td {
+    border: 1px solid #3498db;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #3498db;
+    color: #fff;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #2c3e50;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #34495e;
+}
+
+.alert-danger {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: #1abc9c;
+    color: #fff;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.over-budget {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+
+
+.account-overview {
+    margin-top: 20px;
+    background-color: rgba(44, 62, 80, 0.9);
+}
+
+.account-cards {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+    gap: 20px; /* Space between cards */
+}
+
+.account-card {
+    width: 300px; /* Fixed width for cards */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    color: #ecf0f1; /* Text color */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #3498db;
+
+}
+
+.account-card h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #fff;
+}
+
+.account-card p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.account-card .balance {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Positive balance card */
+.account-card.positive {
+    background-color: #2c3e50; /* Greenish for positive balances */
+}
+
+
+/* Negative balance card */
+.account-card.negative {
+    background-color: #e74c3c; /* Reddish for negative balances */
+}
+
+/* Card hover effects */
+.account-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Budget Overview Section */
+.budget-overview {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgba(44, 62, 80, 0.9); /* Dark background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Budget Cards */
+.budget-overview .card {
+    background-color: rgba(52, 152, 219, 0.1); /* Light blue background for the cards */
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    border-bottom: 2px solid #3498db;
+}
+.budget-card-overview{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+}
+
+.budget-overview .card h3 {
+    font-size: 18px;
+    color: #ecf0f1;
+    margin-bottom: 10px;
+}
+
+.budget-overview .card p {
+    font-size: 16px;
+    color: #ecf0f1;
+}
+
+.budget-overview .over-budget {
+    color: red; /* Red color for over-budget */
+    font-weight: bold;
+}
+
+.alert-danger {
+    background-color: rgba(255, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    color: red;
+    margin-top: 20px;
+}
+
+/* Update Budget Button */
+.budget-overview .btn {
+    margin-top: 20px;
+    text-align: center;
+    display: inline-block;
+}
+
+.budget-overview .btn-primary {
+    background-color: #3498db;
+    color: #ecf0f1;
+}
+
+.budget-overview .btn-primary:hover {
+    background-color: #2980b9;
+}
+
+/*  */
+
+.categories-overview {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: rgba(44, 62, 80, 0.9); /* Dark section background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.categories-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Add space between income and expense sections */
+}
+
+.category-group {
+    flex: 1; /* Allow each section to take equal space */
+    border: 1px solid #3498db; /* Blue border to match project theme */
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgba(52, 73, 94, 0.9); /* Dark blue-gray for better contrast */
+    overflow: hidden;
+    color: #ecf0f1; /* Light text color */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.category-group h3 {
+    text-align: center;
+    font-size: 1.5em;
+    color: #3498db; /* Blue to highlight section titles */
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.category-item {
+    margin: 15px 0;
+    border-bottom: 1px solid #ecf0f1; /* Divider for categories */
+    padding-bottom: 10px;
+}
+
+.category-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ecf0f1;
+}
+
+.subcategory-list {
+    margin: 10px 0 0 20px;
+    padding: 0;
+    list-style-type: disc;
+    color: #bdc3c7; /* Slightly lighter gray for subcategories */
+}
+
+.no-subcategories {
+    margin-left: 20px;
+    font-style: italic;
+    color: #e74c3c; /* Red for missing subcategories */
+}
+
+.category-actions {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.category-actions .btn {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #ecf0f1;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.category-actions .btn:hover {
+    background-color: #2980b9;
+}
+
+
+/* Filter Form Styles */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: rgba(52, 73, 94, 0.9);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+    color: #f9f9f9;
+}
+
+form input[type="date"],
+form select,
+form button {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    background-color: rgba(52, 73, 94, 0.9);
+    color: #ecf0f1;
+}
+
+form input[type="date"]:focus,
+form select:focus,
+form button:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+form button {
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+/* Select Options */
+form select option {
+    padding: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    form {
+        flex-direction: column;
+    }
+
+    form label,
+    form input[type="date"],
+    form select,
+    form button {
+        width: 100%;
+    }
+}

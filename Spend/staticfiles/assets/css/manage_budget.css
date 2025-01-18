@@ -1,0 +1,120 @@
+/* Body Style */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: rgba(27, 42, 56, 0.95); /* Black background for dark mode */
+    color: #ecf0f1; /* Light text for readability */
+    line-height: 1.6;
+}
+
+/* Container Styles */
+.container {
+    margin: 40px auto;
+    max-width: 600px;
+    background-color: rgba(44, 62, 80, 0.9); /* Dark background */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    color: #ecf0f1;
+}
+
+/* Page Header */
+.page-header h1 {
+    text-align: center;
+    font-size: 28px;
+    color: #ecf0f1;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+}
+
+/* Form Container */
+.form-container {
+    margin-top: 20px;
+}
+
+/* Input Fields */
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container input[type="date"],
+.form-container select,
+.form-container textarea {
+    display: block;
+    margin: 10px auto; /* Spacing between fields */
+    width: 90%; /* Responsive width */
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(44, 62, 80, 0.4);
+    color: #ecf0f1;
+    font-size: 16px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+    border: 1px solid rgba(255, 255, 255, 0.6); /* Highlight border */
+    background-color: rgba(44, 62, 80, 0.6); /* Slightly brighter */
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Primary Button */
+.btn-primary {
+    background-color: #3498db;
+    color: #ecf0f1;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ecf0f1;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Link Button */
+a.btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+a.btn-secondary {
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .form-container input,
+    .form-container select {
+        width: 100%;
+    }
+}
