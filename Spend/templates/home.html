@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}">
-    
 </head>
 <body>
     <header>
@@ -14,10 +13,54 @@
     </header>
 
     <main>
-        <section class="account-overview">
-            <a href="{% url 'add_category' %}" class="btn btn-primary">Add Category</a>
-            <a href="{% url 'add_subcategory' %}" class="btn btn-primary">Add SubCategory</a>
+        <!-- New Section: Category Overview -->
+        <section class="category-overview">
+            <h2>Category Overview</h2>
+            <div class="category-container">
+                <!-- Expenses -->
+                <div class="category-section">
+                    <h3>Expenses</h3>
+                    <ul>
+                        {% for category in expense_categories %}
+                            <li>
+                                {{ category.name }}
+                                <ul>
+                                    {% for subcategory in category.subcategories.all %}
+                                        <li>{{ subcategory.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
 
+                <!-- Income -->
+                <div class="category-section">
+                    <h3>Income</h3>
+                    <ul>
+                        {% for category in income_categories %}
+                            <li>
+                                {{ category.name }}
+                                <ul>
+                                    {% for subcategory in category.subcategories.all %}
+                                        <li>{{ subcategory.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="category-buttons">
+                <a href="{% url 'add_category' %}" class="btn btn-primary">Add Category</a>
+                <a href="{% url 'add_subcategory' %}" class="btn btn-primary">Add Subcategory</a>
+            </div>
+        </section>
+
+        <!-- Account Overview Section -->
+        <section class="account-overview">
             <h2>Account Overview</h2>
             <div class="account-cards">
                 {% for account in accounts %}
@@ -32,8 +75,8 @@
             </div>
             <a href="{% url 'add_account' %}" class="btn btn-primary">Add New Account</a>
         </section>
-        
-        
+
+        <!-- Recent Transactions Section -->
         <section class="recent-transactions">
             <h2>Recent Transactions</h2>
             <table>
@@ -63,33 +106,33 @@
                 </tbody>
             </table>
             <a href="{% url 'add_transaction' %}" class="btn btn-primary">Add New Transaction</a>
-            <a href="{% url 'transaction_summary' %}" class="btn btn-primary">View visualized Data</a>
+            <a href="{% url 'transaction_summary' %}" class="btn btn-primary">View Visualized Data</a>
         </section>
 
+        <!-- Budget Overview Section -->
         <section class="budget-overview">
             <h2>Budget Overview</h2>
             {% if budget %}
-            <div class="budget-card-overview">
-                <div class="card">
-                    <h3>Total Budget</h3>
-                    <p>{{ budget.total_budget }} Rwf</p>
+                <div class="budget-card-overview">
+                    <div class="card">
+                        <h3>Total Budget</h3>
+                        <p>{{ budget.total_budget }} Rwf</p>
+                    </div>
+                    <div class="card">
+                        <h3>Total Expenses</h3>
+                        <p>{{ total_expenses }} Rwf</p>
+                    </div>
+                    <div class="card">
+                        <h3>Remaining Budget</h3>
+                        <p>
+                            {% if remaining_budget < 0 %}
+                                <span class="over-budget" id="remaining-budget">{{ remaining_budget }} Rwf (Over Budget!)</span>
+                            {% else %}
+                                <span id="remaining-budget">{{ remaining_budget }} Rwf</span>
+                            {% endif %}
+                        </p>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>Total Expenses</h3>
-                    <p>{{ total_expenses }} Rwf</p>
-                </div>
-                <div class="card">
-                    <h3>Remaining Budget</h3>
-                    <p>
-                        {% if remaining_budget < 0 %}
-                            <span class="over-budget" id="remaining-budget">{{ remaining_budget }} Rwf (Over Budget!)</span>
-                        {% else %}
-                            <span id="remaining-budget">{{ remaining_budget }} Rwf</span>
-                        {% endif %}
-                    </p>
-                </div>
-            </div>
-        
                 {% if budget_overrun %}
                     <div class="alert alert-danger">
                         <strong>Warning!</strong> You have exceeded your budget.
@@ -100,21 +143,15 @@
                 <p>No budget set. <a href="{% url 'manage_budget' %}">Set a Budget</a></p>
             {% endif %}
         </section>
-        
-        <!-- JavaScript Section to Check Budget -->
 
-        
-        
         <a href="/logout" class="btn btn-secondary">Logout</a>
     </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Extract the remaining budget value from the text content of the element
-            const remainingBudgetText = document.getElementById('remaining-budget').textContent;
-            const remainingBudget = parseFloat(remainingBudgetText.replace(' Rwf', '').trim()); // Remove "Rwf" and parse the number
-    
-            // Check if the budget is exceeded and show an alert
+            const remainingBudgetText = document.getElementById('remaining-budget')?.textContent || '0';
+            const remainingBudget = parseFloat(remainingBudgetText.replace(' Rwf', '').trim());
+
             if (remainingBudget < 0) {
                 alert('Warning! You have exceeded your budget!');
             }
