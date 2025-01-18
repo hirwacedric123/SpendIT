@@ -83,8 +83,36 @@
             <a href="{% url 'add_account' %}" class="btn btn-primary">Add New Account</a>
         </section>
 
+
+        
+
         <!-- Recent Transactions Section -->
         <section class="recent-transactions">
+            <form method="GET" action="{% url 'home' %}">
+                <label for="start_date">Start Date:</label>
+                <input type="date" id="start_date" name="start_date" value="{{ start_date }}">
+            
+                <label for="end_date">End Date:</label>
+                <input type="date" id="end_date" name="end_date" value="{{ end_date }}">
+            
+                <label for="category">Category:</label>
+                <select id="category" name="category">
+                    <option value="">All</option>
+                    {% for category in expense_categories %}
+                        <option value="{{ category.id }}" {% if category.id == selected_category %}selected{% endif %}>{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            
+                <label for="transaction_type">Transaction Type:</label>
+                <select id="transaction_type" name="transaction_type">
+                    <option value="">All</option>
+                    <option value="income" {% if transaction_type == 'income' %}selected{% endif %}>Income</option>
+                    <option value="expense" {% if transaction_type == 'expense' %}selected{% endif %}>Expense</option>
+                </select>
+            
+                <button type="submit">Apply Filters</button>
+            </form>
+            
             <h2>Recent Transactions</h2>
             <table>
                 <thead>

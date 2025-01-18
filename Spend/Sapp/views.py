@@ -61,10 +61,35 @@ def logout_view(request):
 
 @login_required
 def home_view(request):
-    # Fetch user accounts and transactions
+    # Default filters
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+    category = request.GET.get('category')
+    transaction_type = request.GET.get('transaction_type')
+
+    # Fetch user accounts
     accounts = Account.objects.filter(user=request.user)
-    transactions = Transaction.objects.filter(account__user=request.user).order_by('-date')[:5]  # Recent 5 transactions
+
+    # Base transactions query
+    transactions = Transaction.objects.filter(account__user=request.user)
+
+    # Apply date filters if provided
+    if start_date:
+        transactions = transactions.filter(date__gte=start_date)
+    if end_date:
+        transactions = transactions.filter(date__lte=end_date)
     
+    # Apply category filter if provided
+    if category:
+        transactions = transactions.filter(category_id=category)
+    
+    # Apply transaction type filter if provided
+    if transaction_type:
+        transactions = transactions.filter(transaction_type=transaction_type)
+    
+    # Order by date and limit to recent 5
+    transactions = transactions.order_by('-date')[:5]
+
     # Get the user's budget if it exists
     try:
         budget = Budget.objects.get(user=request.user)
@@ -85,7 +110,7 @@ def home_view(request):
     if remaining_budget and remaining_budget < 0:
         budget_overrun = True
 
-    # Fetch categories and subcategories
+    # Fetch categories and subcategories for the filter
     expense_categories = Category.objects.filter(type='expense').prefetch_related('subcategories')
     income_categories = Category.objects.filter(type='income').prefetch_related('subcategories')
 
@@ -99,9 +124,15 @@ def home_view(request):
         'budget_overrun': budget_overrun,
         'expense_categories': expense_categories,
         'income_categories': income_categories,
+        'start_date': start_date,
+        'end_date': end_date,
+        'category': category,
+        'transaction_type': transaction_type,
     }
 
     return render(request, 'home.html', context)
+
+
 
 @login_required
 def add_account_view(request):
