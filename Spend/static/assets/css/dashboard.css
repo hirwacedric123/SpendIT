@@ -360,9 +360,6 @@ form button {
     transition: background-color 0.3s ease;
 }
 
-form button:hover {
-    background-color: #0056b3;
-}
 
 /* Select Options */
 form select option {
