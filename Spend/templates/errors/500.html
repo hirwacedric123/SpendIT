@@ -1,0 +1,67 @@
+<!-- 500 Server Error -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .error-container {
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        background-color: rgba(44, 62, 80, 0.9);
+        border-radius: 15px;
+        margin: 40px auto;
+        max-width: 600px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .error-code {
+        font-size: 120px;
+        font-weight: bold;
+        color: #e74c3c;
+        margin: 0;
+        line-height: 1;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .error-message {
+        font-size: 24px;
+        color: #ecf0f1;
+        margin: 20px 0;
+    }
+
+    .error-description {
+        color: #bdc3c7;
+        margin-bottom: 30px;
+    }
+
+    .refresh-btn {
+        background: linear-gradient(145deg, #3498db, #2980b9);
+        color: #fff;
+        padding: 12px 30px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        border: none;
+    }
+
+    .refresh-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+</style>
+
+<div class="error-container">
+    <h1 class="error-code">500</h1>
+    <h2 class="error-message">Server Error</h2>
+    <p class="error-description">Something went wrong on our end. Please try again later.</p>
+    <button onclick="location.reload()" class="refresh-btn">Refresh Page</button>
+</div>
+{% endblock %}
