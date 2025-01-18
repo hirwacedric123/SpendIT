@@ -18,7 +18,7 @@
             
             <div class="categories-container">
                 <!-- Expense Categories -->
-                <div class="category-group">
+                <div class="category-group expense-categories">
                     <h3>Expense Categories</h3>
                     {% for category in expense_categories %}
                         <div class="category-item">
@@ -37,7 +37,7 @@
                 </div>
         
                 <!-- Income Categories -->
-                <div class="category-group">
+                <div class="category-group income-categories">
                     <h3>Income Categories</h3>
                     {% for category in income_categories %}
                         <div class="category-item">
@@ -62,6 +62,7 @@
                 <a href="{% url 'add_subcategory' %}" class="btn btn-primary">Add Subcategory</a>
             </div>
         </section>
+        
         
 
         <!-- Account Overview Section -->

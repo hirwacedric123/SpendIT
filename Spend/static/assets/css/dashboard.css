@@ -231,34 +231,3 @@ table tbody tr:nth-child(even) {
     background-color: #2980b9;
 }
 
-.category-overview {
-    margin-bottom: 30px;
-}
-
-.category-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.category-section {
-    width: 45%;
-}
-
-.category-section ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.category-section h3 {
-    margin-bottom: 10px;
-}
-
-.category-buttons {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.category-buttons .btn {
-    margin: 5px;
-}
