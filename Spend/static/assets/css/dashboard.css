@@ -7,7 +7,7 @@ body {
 }
 
 header {
-    background-color: #3498db; /* Primary color for the header */
+    background-color: rgba(27, 42, 56, 0.95); /* Primary color for the header */
     padding: 20px;
     text-align: center;
     color: #fff;
@@ -350,11 +350,11 @@ form input[type="date"]:focus,
 form select:focus,
 form button:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: #3498db;
 }
 
 form button {
-    background-color: #007bff;
+    background-color: #3498db;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
