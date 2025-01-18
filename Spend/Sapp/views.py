@@ -251,104 +251,25 @@ def get_monthly_summary(user):
     )
     return {item['transaction_type']: item['total_amount'] for item in summary}
 
-
-def get_summary(user, start_date, end_date, period_type):
-    """
-    Helper function to get summaries based on the period type (daily, weekly, monthly)
-    """
-    # Filter transactions based on the date range and user
-    transactions = Transaction.objects.filter(account__user=user, date__range=[start_date, end_date], is_deleted=False)
-    
-    # Daily Summary
-    if period_type == 'daily':
-        summary = transactions.values('transaction_type').annotate(
-            total_amount=Sum('amount')
-        )
-        return {item['transaction_type']: item['total_amount'] for item in summary}
-
-    # Weekly Summary
-    elif period_type == 'weekly':
-        # Adjust logic for weekly if necessary (for example, grouping by week)
-        summary = transactions.values('transaction_type').annotate(
-            total_amount=Sum('amount')
-        )
-        return {item['transaction_type']: item['total_amount'] for item in summary}
-
-    # Monthly Summary
-    elif period_type == 'monthly':
-        summary = transactions.values('transaction_type').annotate(
-            total_amount=Sum('amount')
-        )
-        return {item['transaction_type']: item['total_amount'] for item in summary}
-
-
 @login_required
 def transaction_summary_view(request):
     user = request.user
-
-    # Get start and end dates from GET request
-    start_date = request.GET.get('start_date')
-    end_date = request.GET.get('end_date')
-
-    # If no date range is provided, default to the last 7 days
-    if not start_date or not end_date:
-        start_date = now().date() - timedelta(days=7)
-        end_date = now().date()
-
-    # Get the summaries based on the custom date range
-    daily_summary = get_summary(user, start_date, end_date, 'daily')
-    weekly_summary = get_summary(user, start_date, end_date, 'weekly')
-    monthly_summary = get_summary(user, start_date, end_date, 'monthly')
+    daily_summary = get_daily_summary(user)
+    weekly_summary = get_weekly_summary(user)
+    monthly_summary = get_monthly_summary(user)
 
     context = {
         'daily_summary': daily_summary,
         'weekly_summary': weekly_summary,
         'monthly_summary': monthly_summary,
-        'start_date': start_date,
-        'end_date': end_date,
     }
     return render(request, 'transaction_summary.html', context)
-
 
 
 def transaction_summary_data(request):
     # Prepare date ranges for the last 7 days
     today = now().date()
     days = [(today - timedelta(days=i)).strftime('%Y-%m-%d') for i in range(6, -1, -1)]
-
-    # Aggregate income and expenses for each day
-    data = {
-        'dates': days,
-        'income': [],
-        'expense': []
-    }
-
-    for day in days:
-        daily_income = Transaction.objects.filter(
-            transaction_type='income', date__date=day
-        ).aggregate(total=Sum('amount'))['total'] or 0
-
-        daily_expense = Transaction.objects.filter(
-            transaction_type='expense', date__date=day
-        ).aggregate(total=Sum('amount'))['total'] or 0
-
-        data['income'].append(daily_income)
-        data['expense'].append(daily_expense)
-
-    return JsonResponse(data)
-
-def transaction_summary_data(request):
-    # Get custom date range from query parameters
-    start_date = request.GET.get('start_date')
-    end_date = request.GET.get('end_date')
-
-    # If no custom date range, use the last 7 days
-    if not start_date or not end_date:
-        start_date = now().date() - timedelta(days=7)
-        end_date = now().date()
-
-    # Prepare date ranges for the selected time
-    days = [(start_date + timedelta(days=i)).strftime('%Y-%m-%d') for i in range((end_date - start_date).days + 1)]
 
     # Aggregate income and expenses for each day
     data = {

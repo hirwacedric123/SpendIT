@@ -11,19 +11,6 @@
 <body>
     <div class="container">
         <h1>Transaction Summary</h1>
-
-        <!-- Date Range Filter Form -->
-        <form method="GET" action="{% url 'transaction_summary' %}">
-            <label for="start_date">Start Date:</label>
-            <input type="date" id="start_date" name="start_date" value="{{ start_date }}" required>
-
-            <label for="end_date">End Date:</label>
-            <input type="date" id="end_date" name="end_date" value="{{ end_date }}" required>
-
-            <button type="submit" class="btn btn-primary">Generate Report</button>
-        </form>
-
-        <!-- Summary Sections -->
         <div class="summary-container">
             <div class="summary-section">
                 <h2>Daily Summary</h2>
@@ -46,7 +33,7 @@
 
         <!-- Chart Section -->
         <div class="chart-container">
-            <h2>Income vs Expenses ({{ start_date }} to {{ end_date }})</h2>
+            <h2>Income vs Expenses (Last 7 Days)</h2>
             <canvas id="transactionChart" width="400" height="200"></canvas>
         </div>
 
@@ -56,8 +43,8 @@
     <script>
         const ctx = document.getElementById('transactionChart').getContext('2d');
 
-        // Fetch data from the API with custom date range
-        fetch("{% url 'transaction_summary_data' %}?start_date={{ start_date }}&end_date={{ end_date }}")
+        // Fetch data from the API
+        fetch("{% url 'transaction_summary_data' %}")
             .then(response => response.json())
             .then(data => {
                 const chart = new Chart(ctx, {
