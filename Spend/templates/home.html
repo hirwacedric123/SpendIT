@@ -12,58 +12,7 @@
         <h1>Welcome, {{ user.first_name }}!</h1>
     </header>
 
-    <main>
-        <section class="categories-overview">
-            <h2>Categories and Subcategories</h2>
-            
-            <div class="categories-container">
-                <!-- Expense Categories -->
-                <div class="category-group expense-categories">
-                    <h3>Expense Categories</h3>
-                    {% for category in expense_categories %}
-                        <div class="category-item">
-                            <p class="category-name">{{ category.name }}</p>
-                            {% if category.subcategories.exists %}
-                                <ul class="subcategory-list">
-                                    {% for subcategory in category.subcategories.all %}
-                                        <li>{{ subcategory.name }}</li>
-                                    {% endfor %}
-                                </ul>
-                            {% else %}
-                                <p class="no-subcategories">No subcategories available.</p>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                </div>
-        
-                <!-- Income Categories -->
-                <div class="category-group income-categories">
-                    <h3>Income Categories</h3>
-                    {% for category in income_categories %}
-                        <div class="category-item">
-                            <p class="category-name">{{ category.name }}</p>
-                            {% if category.subcategories.exists %}
-                                <ul class="subcategory-list">
-                                    {% for subcategory in category.subcategories.all %}
-                                        <li>{{ subcategory.name }}</li>
-                                    {% endfor %}
-                                </ul>
-                            {% else %}
-                                <p class="no-subcategories">No subcategories available.</p>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        
-            <!-- Add Category and Subcategory Buttons -->
-            <div class="category-actions">
-                <a href="{% url 'add_category' %}" class="btn btn-primary">Add Category</a>
-                <a href="{% url 'add_subcategory' %}" class="btn btn-primary">Add Subcategory</a>
-            </div>
-        </section>
-        
-        
+    <main>       
 
         <!-- Account Overview Section -->
          
@@ -81,6 +30,41 @@
                 {% endfor %}
             </div>
             <a href="{% url 'add_account' %}" class="btn btn-primary">Add New Account</a>
+        </section>
+
+        <!--  -->
+        <section class="budget-overview">
+            <h2>Budget Overview</h2>
+            {% if budget %}
+                <div class="budget-card-overview">
+                    <div class="card">
+                        <h3>Total Budget</h3>
+                        <p>{{ budget.total_budget }} Rwf</p>
+                    </div>
+                    <div class="card">
+                        <h3>Total Expenses</h3>
+                        <p>{{ total_expenses }} Rwf</p>
+                    </div>
+                    <div class="card">
+                        <h3>Remaining Budget</h3>
+                        <p>
+                            {% if remaining_budget < 0 %}
+                                <span class="over-budget" id="remaining-budget">{{ remaining_budget }} Rwf (Over Budget!)</span>
+                            {% else %}
+                                <span id="remaining-budget">{{ remaining_budget }} Rwf</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                {% if budget_overrun %}
+                    <div class="alert alert-danger">
+                        <strong>Warning!</strong> You have exceeded your budget.
+                    </div>
+                {% endif %}
+                <a href="{% url 'manage_budget' %}" class="btn btn-primary">Update Budget</a>
+            {% else %}
+                <p>No budget set. <a href="{% url 'manage_budget' %}">Set a Budget</a></p>
+            {% endif %}
         </section>
 
 
@@ -144,40 +128,58 @@
             <a href="{% url 'transaction_summary' %}" class="btn btn-primary">View Visualized Data</a>
         </section>
 
-        <!-- Budget Overview Section -->
-        <section class="budget-overview">
-            <h2>Budget Overview</h2>
-            {% if budget %}
-                <div class="budget-card-overview">
-                    <div class="card">
-                        <h3>Total Budget</h3>
-                        <p>{{ budget.total_budget }} Rwf</p>
-                    </div>
-                    <div class="card">
-                        <h3>Total Expenses</h3>
-                        <p>{{ total_expenses }} Rwf</p>
-                    </div>
-                    <div class="card">
-                        <h3>Remaining Budget</h3>
-                        <p>
-                            {% if remaining_budget < 0 %}
-                                <span class="over-budget" id="remaining-budget">{{ remaining_budget }} Rwf (Over Budget!)</span>
+        <section class="categories-overview">
+            <h2>Categories and Subcategories</h2>
+            
+            <div class="categories-container">
+                <!-- Expense Categories -->
+                <div class="category-group expense-categories">
+                    <h3>Expense Categories</h3>
+                    {% for category in expense_categories %}
+                        <div class="category-item">
+                            <p class="category-name">{{ category.name }}</p>
+                            {% if category.subcategories.exists %}
+                                <ul class="subcategory-list">
+                                    {% for subcategory in category.subcategories.all %}
+                                        <li>{{ subcategory.name }}</li>
+                                    {% endfor %}
+                                </ul>
                             {% else %}
-                                <span id="remaining-budget">{{ remaining_budget }} Rwf</span>
+                                <p class="no-subcategories">No subcategories available.</p>
                             {% endif %}
-                        </p>
-                    </div>
+                        </div>
+                    {% endfor %}
                 </div>
-                {% if budget_overrun %}
-                    <div class="alert alert-danger">
-                        <strong>Warning!</strong> You have exceeded your budget.
-                    </div>
-                {% endif %}
-                <a href="{% url 'manage_budget' %}" class="btn btn-primary">Update Budget</a>
-            {% else %}
-                <p>No budget set. <a href="{% url 'manage_budget' %}">Set a Budget</a></p>
-            {% endif %}
+        
+                <!-- Income Categories -->
+                <div class="category-group income-categories">
+                    <h3>Income Categories</h3>
+                    {% for category in income_categories %}
+                        <div class="category-item">
+                            <p class="category-name">{{ category.name }}</p>
+                            {% if category.subcategories.exists %}
+                                <ul class="subcategory-list">
+                                    {% for subcategory in category.subcategories.all %}
+                                        <li>{{ subcategory.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p class="no-subcategories">No subcategories available.</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        
+            <!-- Add Category and Subcategory Buttons -->
+            <div class="category-actions">
+                <a href="{% url 'add_category' %}" class="btn btn-primary">Add Category</a>
+                <a href="{% url 'add_subcategory' %}" class="btn btn-primary">Add Subcategory</a>
+            </div>
         </section>
+
+        <!-- Budget Overview Section -->
+
 
         <a href="/logout" class="btn btn-secondary">Logout</a>
     </main>
