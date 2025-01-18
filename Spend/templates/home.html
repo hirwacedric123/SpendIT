@@ -13,50 +13,56 @@
     </header>
 
     <main>
-        <section class="category-overview">
-            <h2>Category Overview</h2>
-            <div class="category-container">
-                <!-- Expenses -->
-                <div class="category-section">
-                    <h3>Expenses</h3>
-                    <ul>
-                        {% for category in expense_categories %}
-                            <li>
-                                {{ category.name }}
-                                <ul>
+        <section class="categories-overview">
+            <h2>Categories and Subcategories</h2>
+            
+            <div class="categories-container">
+                <!-- Expense Categories -->
+                <div class="category-group">
+                    <h3>Expense Categories</h3>
+                    {% for category in expense_categories %}
+                        <div class="category-item">
+                            <p class="category-name">{{ category.name }}</p>
+                            {% if category.subcategories.exists %}
+                                <ul class="subcategory-list">
                                     {% for subcategory in category.subcategories.all %}
                                         <li>{{ subcategory.name }}</li>
                                     {% endfor %}
                                 </ul>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                            {% else %}
+                                <p class="no-subcategories">No subcategories available.</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
                 </div>
-
-                <!-- Income -->
-                <div class="category-section">
-                    <h3>Income</h3>
-                    <ul>
-                        {% for category in income_categories %}
-                            <li>
-                                {{ category.name }}
-                                <ul>
+        
+                <!-- Income Categories -->
+                <div class="category-group">
+                    <h3>Income Categories</h3>
+                    {% for category in income_categories %}
+                        <div class="category-item">
+                            <p class="category-name">{{ category.name }}</p>
+                            {% if category.subcategories.exists %}
+                                <ul class="subcategory-list">
                                     {% for subcategory in category.subcategories.all %}
                                         <li>{{ subcategory.name }}</li>
                                     {% endfor %}
                                 </ul>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                            {% else %}
+                                <p class="no-subcategories">No subcategories available.</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
-
-            <!-- Buttons -->
-            <div class="category-buttons">
+        
+            <!-- Add Category and Subcategory Buttons -->
+            <div class="category-actions">
                 <a href="{% url 'add_category' %}" class="btn btn-primary">Add Category</a>
                 <a href="{% url 'add_subcategory' %}" class="btn btn-primary">Add Subcategory</a>
             </div>
         </section>
+        
 
         <!-- Account Overview Section -->
         <section class="account-overview">
