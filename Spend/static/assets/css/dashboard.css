@@ -130,6 +130,7 @@ table tbody tr:nth-child(even) {
     color: #ecf0f1; /* Text color */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-bottom: 20px;
+    border-bottom: 2px solid #3498db;
 
 }
 
@@ -183,6 +184,7 @@ table tbody tr:nth-child(even) {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 300px;
+    border-bottom: 2px solid #3498db;
 }
 .budget-card-overview{
     display: flex;
@@ -231,3 +233,83 @@ table tbody tr:nth-child(even) {
     background-color: #2980b9;
 }
 
+/*  */
+
+.categories-overview {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: rgba(44, 62, 80, 0.9); /* Dark section background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.categories-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Add space between income and expense sections */
+}
+
+.category-group {
+    flex: 1; /* Allow each section to take equal space */
+    border: 1px solid #3498db; /* Blue border to match project theme */
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgba(52, 73, 94, 0.9); /* Dark blue-gray for better contrast */
+    overflow: hidden;
+    color: #ecf0f1; /* Light text color */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.category-group h3 {
+    text-align: center;
+    font-size: 1.5em;
+    color: #3498db; /* Blue to highlight section titles */
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.category-item {
+    margin: 15px 0;
+    border-bottom: 1px solid #ecf0f1; /* Divider for categories */
+    padding-bottom: 10px;
+}
+
+.category-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ecf0f1;
+}
+
+.subcategory-list {
+    margin: 10px 0 0 20px;
+    padding: 0;
+    list-style-type: disc;
+    color: #bdc3c7; /* Slightly lighter gray for subcategories */
+}
+
+.no-subcategories {
+    margin-left: 20px;
+    font-style: italic;
+    color: #e74c3c; /* Red for missing subcategories */
+}
+
+.category-actions {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.category-actions .btn {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #ecf0f1;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.category-actions .btn:hover {
+    background-color: #2980b9;
+}
