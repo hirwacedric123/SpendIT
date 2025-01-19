@@ -1,4 +1,4 @@
-Here’s the updated README file without the API Endpoints section:
+
 
 ```markdown
 # iSpendIT
