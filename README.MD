@@ -140,7 +140,7 @@ The **home page** of iSpendIT is designed to provide users with an at-a-glance v
   - Logout button: Redirects to the logout page.
 
 **Screenshot**:  
-*(Add a screenshot of the header section here.)*
+*![Header section](/readme_images/header.png)*
 
 ---
 
@@ -216,11 +216,8 @@ The **home page** of iSpendIT is designed to provide users with an at-a-glance v
 ---
 
 
-```markdown
-![Header Section](/readme_images/header.png)
-```
 
-![Home Page Overview](/readme_images/header.png)
+
 
 ---
 
