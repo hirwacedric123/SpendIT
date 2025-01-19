@@ -220,6 +220,8 @@ The **home page** of iSpendIT is designed to provide users with an at-a-glance v
 ![Header Section](/readme_images/header.png)
 ```
 
+![Home Page Overview](/readme_images/header.png)
+
 ---
 
 ### Login and Signup
