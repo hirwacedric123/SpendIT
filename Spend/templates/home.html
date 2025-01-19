@@ -73,6 +73,7 @@
 
         <!-- Recent Transactions Section -->
         <section class="recent-transactions">
+            <h2>Recent Transactions</h2>
             <form method="GET" action="{% url 'home' %}">
                 <label for="start_date">Start Date:</label>
                 <input type="date" id="start_date" name="start_date" value="{{ start_date }}">
@@ -98,7 +99,7 @@
                 <button type="submit" class="btn">Apply Filters</button>
             </form>
             
-            <h2>Recent Transactions</h2>
+
             <table>
                 <thead>
                     <tr>
