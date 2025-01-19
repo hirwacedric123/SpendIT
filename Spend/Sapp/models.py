@@ -80,7 +80,7 @@ class Transaction(models.Model):
             raise ValidationError("Expense cannot exceed the account balance.")
 
     def __str__(self):
-        return f"{self.transaction_type.title()} - {self.amount} Rwf"
+        return f"{self.transaction_type.title()} - {self.amount:,} Rwf"
 
     class Meta:
         indexes = [
@@ -108,7 +108,7 @@ class Budget(models.Model):
         return self.total_budget - expenses
 
     def __str__(self):
-        return f"{self.user.username}'s Budget: {self.total_budget} Rwf"
+        return f"{self.user.username}'s Budget: {self.total_budget:,} Rwf"
 
 
 class CategoryBudget(models.Model):
@@ -117,7 +117,8 @@ class CategoryBudget(models.Model):
     budget_amount = models.DecimalField(max_digits=12, decimal_places=0, default=0)
 
     def __str__(self):
-        return f"{self.category.name} Budget: {self.budget_amount} Rwf"
+        return f"{self.category.name} Budget: {self.budget_amount:,} Rwf"
+
 
 
 def get_daily_summary(user):
