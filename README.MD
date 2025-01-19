@@ -217,7 +217,7 @@ The **home page** of iSpendIT is designed to provide users with an at-a-glance v
 
 
 ```markdown
-![Header Section](readme_images/header.png)
+![Header Section](/readme_images/header.png)
 ```
 
 ---
