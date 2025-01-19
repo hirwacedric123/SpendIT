@@ -231,7 +231,7 @@ The **home page** of iSpendIT is designed to provide users with an at-a-glance v
   - Password (with confirmation)
 - **Action**: Registers the user and redirects to the login page.
 
-**Screenshot**: *(Add signup page screenshot here)*  
+**Screenshot**: *![Signup Page](/readme_images/signup.png)* 
 
 #### 2. **Login Page**
 - **Purpose**: Enables registered users to log in to their dashboard.
@@ -240,7 +240,7 @@ The **home page** of iSpendIT is designed to provide users with an at-a-glance v
   - Password
 - **Action**: Authenticates the user and redirects to the home page upon success.
 
-**Screenshot**: *(Add login page screenshot here)*  
+**Screenshot**: *![Login Page](/readme_images/login.png)*  
 
 #### 3. **Logout**
 - **Purpose**: Securely logs the user out and redirects them to the login page.
