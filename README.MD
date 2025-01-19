@@ -1,5 +1,4 @@
 
-
 ---
 
 # iSpendIT: Personal Finance Tracker
