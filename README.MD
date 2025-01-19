@@ -211,7 +211,7 @@ The **home page** of iSpendIT is designed to provide users with an at-a-glance v
     - Add Subcategory Button
 
 **Screenshot**:  
-*(Add a screenshot of the Categories and Subcategories section here.)*
+*![Categories and subcategories section](/readme_images/categories.png)*
 
 ---
 
