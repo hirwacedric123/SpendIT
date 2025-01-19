@@ -275,7 +275,7 @@ The **home page** of iSpendIT is designed to provide users with an at-a-glance v
 - **Line charts** for monthly trends.
 
 **Screenshot:**  
-![Transaction Summary Page](readme_images/transaction_summary_page.png)
+![Transaction Summary Page](readme_images/trans_summ.png)
 
 ---
 
@@ -286,7 +286,7 @@ The **home page** of iSpendIT is designed to provide users with an at-a-glance v
 - **Total Budget Amount**
 
 **Screenshot:**  
-![Manage Budget Page](readme_images/manage_budget_page.png)
+![Manage Budget Page](readme_images/add_budg.png)
 
 
 ### 4. Add Category Page
