@@ -249,7 +249,7 @@ The **home page** of iSpendIT is designed to provide users with an at-a-glance v
 
 ### Other Pages
 
-#### Add Account, Transaction Summary, and Budget Management  
+#### Add Account, Transaction Summary, and Budget Management  , Add Transaction pages and so on
  ## Other Pages
 
 ### 1. Add Account Page
@@ -284,7 +284,6 @@ The **home page** of iSpendIT is designed to provide users with an at-a-glance v
 
 **Fields:**
 - **Total Budget Amount**
-- **Budget Start and End Dates**
 
 **Screenshot:**  
 ![Manage Budget Page](readme_images/manage_budget_page.png)
@@ -300,7 +299,7 @@ The **home page** of iSpendIT is designed to provide users with an at-a-glance v
 **Action:** Adds a new category to the database.
 
 **Screenshot:**  
-![Add Category Page](readme_images/add_category_page.png)
+![Add Category Page](readme_images/add_cat.png)
 
 ---
 
@@ -314,7 +313,7 @@ The **home page** of iSpendIT is designed to provide users with an at-a-glance v
 **Action:** Adds a new subcategory linked to an existing category.
 
 **Screenshot:**  
-![Add Subcategory Page](readme_images/add_subcategory_page.png)
+![Add Subcategory Page](readme_images/add_subcat.png)
 
 
 ---
