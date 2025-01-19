@@ -173,7 +173,7 @@ The **home page** of iSpendIT is designed to provide users with an at-a-glance v
   - **Manage Budget Button**: Provides access to update or set a budget.
 
 **Screenshot**:  
-*(Add a screenshot of the Budget Overview section here.)*
+*![Budget overview section](/readme_images/budgetover.png)*
 
 ---
 
