@@ -9,14 +9,15 @@
 </head>
 <body>
     <div class="login-container">
-        <h1>Login</h1>
+        
+        <h1>Welcome Back To ISpendIt</h1>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Login</button>
         </form>
 
-        <p>Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+        <p>Don't have an account? <a href="{% url 'signup' %}" style="font-size: larger;"> Sign up</a></p>
     </div>
 </body>
 </html>
