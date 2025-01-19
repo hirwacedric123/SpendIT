@@ -250,7 +250,72 @@ The **home page** of iSpendIT is designed to provide users with an at-a-glance v
 ### Other Pages
 
 #### Add Account, Transaction Summary, and Budget Management  
-*(Details provided earlier)*  
+ ## Other Pages
+
+### 1. Add Account Page
+**Purpose:** Allows users to add new financial accounts.
+
+**Fields:**
+- **Account Name**
+- **Account Type** (e.g., Savings, Checking)
+- **Initial Balance**
+
+**Action:** Adds a new account to the database.
+
+**Screenshot:**  
+![Add Account Page](readme_images/add_account_page.png)
+
+---
+
+### 2. Transaction Summary Page
+**Purpose:** Visualizes transaction data through graphs and charts.
+
+**Components:**
+- **Pie charts** for category-wise expenses.
+- **Line charts** for monthly trends.
+
+**Screenshot:**  
+![Transaction Summary Page](readme_images/transaction_summary_page.png)
+
+---
+
+### 3. Manage Budget Page
+**Purpose:** Enables users to set or update their monthly budget.
+
+**Fields:**
+- **Total Budget Amount**
+- **Budget Start and End Dates**
+
+**Screenshot:**  
+![Manage Budget Page](readme_images/manage_budget_page.png)
+
+
+### 4. Add Category Page
+**Purpose:** Allows users to add new income or expense categories.
+
+**Fields:**
+- **Category Name**
+- **Category Type** (e.g., Income, Expense)
+
+**Action:** Adds a new category to the database.
+
+**Screenshot:**  
+![Add Category Page](readme_images/add_category_page.png)
+
+---
+
+### 5. Add Subcategory Page
+**Purpose:** Allows users to add subcategories under existing categories.
+
+**Fields:**
+- **Subcategory Name**
+- **Parent Category**
+
+**Action:** Adds a new subcategory linked to an existing category.
+
+**Screenshot:**  
+![Add Subcategory Page](readme_images/add_subcategory_page.png)
+
 
 ---
 
