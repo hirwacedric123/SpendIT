@@ -1,4 +1,4 @@
-Here’s the updated README file without the API Endpoints section:
+
 
 ```markdown
 # iSpendIT
@@ -110,6 +110,19 @@ _Add screenshots of your application here._
 
 ---
 
+## API Endpoints
+
+### Available Endpoints
+| Endpoint                 | Method | Description                             |
+|--------------------------|--------|-----------------------------------------|
+| `/api/login/`            | POST   | Authenticate and log in users          |
+| `/api/transactions/`     | GET    | Fetch all transactions                 |
+| `/api/transactions/add/` | POST   | Add a new transaction                  |
+| `/api/budget/`           | GET    | Fetch budget details                   |
+| `/api/budget/update/`    | POST   | Update budget                          |
+
+---
+
 ## Contributions
 
 Contributions are welcome! Follow these steps to contribute:
@@ -160,4 +173,3 @@ For questions or feedback, feel free to reach out!
 - Multi-language support
 ```
 
-This version removes the API Endpoints section while keeping the README detailed and professional. Let me know if you’d like further refinements!
