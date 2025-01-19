@@ -11,6 +11,11 @@ from django.db.models import Sum
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+from django.contrib.auth.models import User
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
+from django.contrib import messages
+
 
 from django.db.models import Sum
 from django.utils.timezone import localtime, now
@@ -35,18 +40,29 @@ def signup_view(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
-            # Create the user
-            user = User.objects.create_user(
-                username=form.cleaned_data['email'],  # Use email as the username
-                email=form.cleaned_data['email'],
-                first_name=form.cleaned_data['first_name'],
-                last_name=form.cleaned_data['last_name'],
-                password=form.cleaned_data['password'],
-            )
-            messages.success(request, "Account created successfully! Please log in.")
-            return redirect('login')  # Redirect to the login page
+            password = form.cleaned_data['password']
+            try:
+                # Validate the password
+                validate_password(password)
+                
+                # Create the user
+                user = User.objects.create_user(
+                    username=form.cleaned_data['email'],  # Use email as the username
+                    email=form.cleaned_data['email'],
+                    first_name=form.cleaned_data['first_name'],
+                    last_name=form.cleaned_data['last_name'],
+                    password=password,
+                )
+                messages.success(request, "Account created successfully! Please log in.")
+                return redirect('login')  # Redirect to the login page
+            
+            except ValidationError as e:
+                # Add password validation errors to the form
+                for error in e:
+                    form.add_error('password', error)
     else:
         form = SignupForm()
+
     return render(request, 'auth/signup.html', {'form': form})
 
 def login_view(request):
