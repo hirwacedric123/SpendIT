@@ -122,10 +122,103 @@ Follow these steps to set up the project locally:
 
 ## Screenshots and Sections
 
+Here's how you can structure the README to explain each section of the home page with corresponding screenshots:
+
+---
+
 ### Home Page Overview
 
-The **Home Page** provides a comprehensive view of the user's financial data, divided into the following sections:  
-*(Detailed explanation provided earlier.)*  
+The **home page** of iSpendIT is designed to provide users with an at-a-glance view of their financial data and quick access to key features. Below are the sections of the home page, along with their functionality and screenshots for reference.
+
+---
+
+#### 1. **Header Section**
+
+- **Purpose**: Displays a personalized welcome message to the user along with a logout button for secure session termination.
+- **Components**:
+  - Welcome message: `Welcome, [User's First Name]!`
+  - Logout button: Redirects to the logout page.
+
+**Screenshot**:  
+*(Add a screenshot of the header section here.)*
+
+---
+
+#### 2. **Account Overview Section**
+
+- **Purpose**: Provides a summary of all accounts added by the user, showing their type and current balance. Users can also add new accounts from this section.
+- **Components**:
+  - Cards displaying account details:
+    - Name of the account.
+    - Type of the account (e.g., Savings, Checking).
+    - Current balance (formatted in Rwf).
+    - Color-coded based on balance:
+      - **Green** for positive balances.
+      - **Red** for negative balances.
+  - **Add New Account Button**: Allows users to add a new account directly.
+
+**Screenshot**:  
+*(Add a screenshot of the Account Overview section here.)*
+
+---
+
+#### 3. **Budget Overview Section**
+
+- **Purpose**: Shows the user's budget status, including total budget, total expenses, and remaining budget. Alerts are displayed if the user exceeds their budget.
+- **Components**:
+  - **Cards for Budget Metrics**:
+    - **Total Budget**: Displays the total amount set by the user.
+    - **Total Expenses**: Summarizes all expenses.
+    - **Remaining Budget**: Highlights the remaining amount and shows a warning if the user goes over budget.
+  - **Manage Budget Button**: Provides access to update or set a budget.
+
+**Screenshot**:  
+*(Add a screenshot of the Budget Overview section here.)*
+
+---
+
+#### 4. **Recent Transactions Section**
+
+- **Purpose**: Displays a table of the most recent transactions, with options to filter by date range, category, and type (income or expense). Users can add new transactions or view data visualizations.
+- **Components**:
+  - **Filters**:
+    - Start Date and End Date: Select a specific date range.
+    - Category: Filter by income or expense categories.
+    - Transaction Type: Filter by income or expense transactions.
+  - **Table**: Shows details for each transaction:
+    - Date
+    - Type (Income or Expense)
+    - Amount
+    - Description
+    - Account linked to the transaction
+  - **Buttons**:
+    - Add New Transaction
+    - View Visualized Data
+
+**Screenshot**:  
+*(Add a screenshot of the Recent Transactions section here.)*
+
+---
+
+#### 5. **Categories and Subcategories Section**
+
+- **Purpose**: Lists all categories and subcategories for income and expenses. Users can add or manage categories and subcategories from this section.
+- **Components**:
+  - **Expense Categories**: Displays all expense categories and their respective subcategories.
+  - **Income Categories**: Lists all income categories with their respective subcategories.
+  - **Actions**:
+    - Add Category Button
+    - Add Subcategory Button
+
+**Screenshot**:  
+*(Add a screenshot of the Categories and Subcategories section here.)*
+
+---
+
+
+```markdown
+![Header Section](assets/screenshots/header.png)
+```
 
 ---
 
