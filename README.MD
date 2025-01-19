@@ -1,4 +1,3 @@
-Here’s the final README file, formatted so you can copy and paste it directly into your GitHub repository. It will look clean and professional:
 
 ---
 
@@ -148,4 +147,3 @@ For any questions, suggestions, or feedback, feel free to reach out!
 - Multi-currency and multi-language support.
 
 ---
-
