@@ -158,7 +158,7 @@ The **home page** of iSpendIT is designed to provide users with an at-a-glance v
   - **Add New Account Button**: Allows users to add a new account directly.
 
 **Screenshot**:  
-*(Add a screenshot of the Account Overview section here.)*
+*![Header section](/readme_images/accountover.png)*
 
 ---
 
