@@ -135,7 +135,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-handler404 = 'Sapp.views.handler404'
-handler403 = 'Sapp.views.handler403'
-handler500 = 'Sapp.views.handler500'
-handler400 = 'Sapp.views.handler400'
+# handler404 = 'Sapp.views.handler404'
+# handler403 = 'Sapp.views.handler403'
+# handler500 = 'Sapp.views.handler500'
+# handler400 = 'Sapp.views.handler400'
