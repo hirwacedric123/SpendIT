@@ -12,13 +12,13 @@ class Account(models.Model):
         ('cash', 'Cash'),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Link account to a user
-    name = models.CharField(max_length=100)  # e.g., "My Bank Account"
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
     account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPES)
-    balance = models.DecimalField(max_digits=12, decimal_places=0, default=0)  # Rwf balance
+    balance = models.DecimalField(max_digits=12, decimal_places=0, default=0)
 
     def __str__(self):
-        return f"{self.name} ({self.get_account_type_display()}) - {self.balance} Rwf"
+        return f"{self.name} ({self.get_account_type_display()}) - {self.balance:,} Rwf"
 
 
 class Category(models.Model):
