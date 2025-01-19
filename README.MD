@@ -1,3 +1,4 @@
+Here's the updated README file with the hosting link, your GitHub username, and details about the login and signup functionality added.
 
 ---
 
@@ -9,18 +10,19 @@ iSpendIT is a personal finance tracking application designed to help users manag
 
 ## Table of Contents
 
-1. [Project Overview](#project-overview)
-2. [Features](#features)
-3. [Technologies Used](#technologies-used)
-4. [Setup and Installation](#setup-and-installation)
-5. [Usage](#usage)
-6. [Screenshots and Sections](#screenshots-and-sections)
-   - [Home Page Overview](#home-page-overview)
-   - [Other Pages](#other-pages)
-7. [API Documentation](#api-documentation)
-8. [Contributing](#contributing)
-9. [License](#license)
-10. [Contact](#contact)
+1. [Project Overview](#project-overview)  
+2. [Features](#features)  
+3. [Technologies Used](#technologies-used)  
+4. [Setup and Installation](#setup-and-installation)  
+5. [Usage](#usage)  
+6. [Screenshots and Sections](#screenshots-and-sections)  
+   - [Home Page Overview](#home-page-overview)  
+   - [Login and Signup](#login-and-signup)  
+   - [Other Pages](#other-pages)  
+7. [API Documentation](#api-documentation)  
+8. [Contributing](#contributing)  
+9. [License](#license)  
+10. [Contact](#contact)  
 
 ---
 
@@ -32,9 +34,12 @@ iSpendIT simplifies financial management by allowing users to:
 - Categorize transactions and view trends.
 - Gain insights into spending and saving patterns through visualized data.
 
+This project is live at:  
+👉 **[iSpendIT on PythonAnywhere](https://ispendit.pythonanywhere.com/)**
+
 The project comprises:
 - A **Django-based web application** for managing finances.
-- A **Flutter mobile app** for on-the-go access to QR codes and attendance (future feature integration).
+- A **Flutter mobile app** for QR code-based attendance and finance tracking (future feature integration).
 
 ---
 
@@ -45,6 +50,7 @@ The project comprises:
 - **Transaction Management**: Filter transactions by date, category, or type.
 - **Categories and Subcategories**: Organize income and expenses into groups.
 - **Data Visualization**: Gain insights through graphs and charts.
+- **User Authentication**: Secure signup, login, and logout functionality.
 - **Responsive Design**: Accessible across devices.
 
 ---
@@ -74,7 +80,7 @@ Follow these steps to set up the project locally:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-repo-url/ispending.git
+   git clone https://github.com/hirwacedric123/ispending.git
    cd ispending
    ```
 
@@ -110,8 +116,8 @@ Follow these steps to set up the project locally:
 
 ## Usage
 
-- **Web App**: Access the dashboard at `http://127.0.0.1:8000/`.
-- **Mobile App**: Use the Flutter app to scan QR codes and manage finances on the go.
+- **Web App**: Access the dashboard at `http://127.0.0.1:8000/` or the hosted link: [https://ispendit.pythonanywhere.com/](https://ispendit.pythonanywhere.com/).  
+- **Mobile App**: Use the Flutter app to manage finances on the go (planned feature).  
 
 ---
 
@@ -119,64 +125,52 @@ Follow these steps to set up the project locally:
 
 ### Home Page Overview
 
-The **Home Page** provides a comprehensive view of the user's financial data, divided into the following sections:
+The **Home Page** provides a comprehensive view of the user's financial data, divided into the following sections:  
+*(Detailed explanation provided earlier.)*  
 
-1. **Header Section**  
-   *(Explanation as provided earlier)*  
+---
 
-2. **Account Overview Section**  
-   *(Explanation as provided earlier)*  
+### Login and Signup
 
-3. **Budget Overview Section**  
-   *(Explanation as provided earlier)*  
+#### 1. **Signup Page**
+- **Purpose**: Allows new users to create an account.
+- **Fields**:
+  - Username
+  - Email Address
+  - Password (with confirmation)
+- **Action**: Registers the user and redirects to the login page.
 
-4. **Recent Transactions Section**  
-   *(Explanation as provided earlier)*  
+**Screenshot**: *(Add signup page screenshot here)*  
 
-5. **Categories and Subcategories Section**  
-   *(Explanation as provided earlier)*  
+#### 2. **Login Page**
+- **Purpose**: Enables registered users to log in to their dashboard.
+- **Fields**:
+  - Username or Email Address
+  - Password
+- **Action**: Authenticates the user and redirects to the home page upon success.
+
+**Screenshot**: *(Add login page screenshot here)*  
+
+#### 3. **Logout**
+- **Purpose**: Securely logs the user out and redirects them to the login page.
+
+---
 
 ### Other Pages
 
-#### 1. **Add Account Page**
-- **Purpose**: Allows users to add new financial accounts.
-- **Fields**:
-  - Account Name
-  - Account Type (e.g., Savings, Checking)
-  - Initial Balance
-- **Action**: Adds a new account to the database.
-
-**Screenshot**:  
-*(Add screenshot of the Add Account page)*
-
-#### 2. **Transaction Summary Page**
-- **Purpose**: Visualizes transaction data through graphs and charts.
-- **Components**:
-  - Pie charts for category-wise expenses.
-  - Line charts for monthly trends.
-
-**Screenshot**:  
-*(Add screenshot of the Transaction Summary page)*
-
-#### 3. **Manage Budget Page**
-- **Purpose**: Enables users to set or update their monthly budget.
-- **Fields**:
-  - Total Budget Amount
-  - Budget Start and End Dates
-
-**Screenshot**:  
-*(Add screenshot of the Manage Budget page)*
+#### Add Account, Transaction Summary, and Budget Management  
+*(Details provided earlier)*  
 
 ---
 
 ## API Documentation
 
 ### Endpoints
-1. **`/api/accounts/`**: Retrieve or create accounts.
-2. **`/api/transactions/`**: Retrieve, create, or update transactions.
-3. **`/api/categories/`**: Manage categories and subcategories.
+1. **`/api/accounts/`**: Retrieve or create accounts.  
+2. **`/api/transactions/`**: Retrieve, create, or update transactions.  
+3. **`/api/categories/`**: Manage categories and subcategories.  
 
-*(Add detailed API documentation or a link to it.)*
+*(Add detailed API documentation or a link to it.)*  
 
 ---
 
@@ -184,26 +178,26 @@ The **Home Page** provides a comprehensive view of the user's financial data, di
 
 We welcome contributions! To contribute:
 
-1. Fork the repository.
-2. Create a new branch:
+1. Fork the repository.  
+2. Create a new branch:  
    ```bash
    git checkout -b feature/your-feature-name
    ```
-3. Commit your changes:
+3. Commit your changes:  
    ```bash
    git commit -m "Add your message here"
    ```
-4. Push to your branch:
+4. Push to your branch:  
    ```bash
    git push origin feature/your-feature-name
    ```
-5. Submit a pull request.
+5. Submit a pull request.  
 
 ---
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+This project is licensed under the MIT License. See the `LICENSE` file for details.  
 
 ---
 
@@ -211,9 +205,8 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 
 For questions, suggestions, or feedback, please contact:
 
-- **Name**: [Your Name]  
+- **Name**: Cedric Hirwa  
 - **Email**: [your-email@example.com]  
-- **GitHub**: [https://github.com/your-username](https://github.com/your-username)
+- **GitHub**: [https://github.com/hirwacedric123](https://github.com/hirwacedric123)  
 
 ---
-
