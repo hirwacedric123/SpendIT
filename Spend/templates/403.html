@@ -1,73 +1,87 @@
 <!-- 403 Forbidden/Login Required -->
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>403 ISpendIT</title>
+    <style>
+        .auth-container {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(44, 62, 80, 0.9);
+            border-radius: 15px;
+            margin: 40px auto;
+            max-width: 600px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+    
+        .lock-icon {
+            font-size: 80px;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+    
+        .auth-message {
+            font-size: 28px;
+            color: #ecf0f1;
+            margin: 20px 0;
+        }
+    
+        .auth-description {
+            color: #bdc3c7;
+            margin-bottom: 30px;
+        }
+    
+        .auth-buttons {
+            display: flex;
+            gap: 20px;
+        }
+    
+        .auth-btn {
+            background: linear-gradient(145deg, #3498db, #2980b9);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+    
+        .auth-btn.register {
+            background: linear-gradient(145deg, #1abc9c, #16a085);
+        }
+    
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="lock-icon">🔒</div>
+        <h1 class="auth-message">Login Required</h1>
+        <p class="auth-description">Please log in to access this page.</p>
+        <div class="auth-buttons">
+            <a href="{% url 'login' %}" class="auth-btn">Login</a>
+            <a href="{% url 'register' %}" class="auth-btn register">Register</a>
+        </div>
+    </div>
+    
+</body>
+</html>
 
 {% block content %}
-<style>
-    .auth-container {
-        min-height: 80vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 20px;
-        background-color: rgba(44, 62, 80, 0.9);
-        border-radius: 15px;
-        margin: 40px auto;
-        max-width: 600px;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-    }
 
-    .lock-icon {
-        font-size: 80px;
-        color: #3498db;
-        margin-bottom: 20px;
-    }
 
-    .auth-message {
-        font-size: 28px;
-        color: #ecf0f1;
-        margin: 20px 0;
-    }
 
-    .auth-description {
-        color: #bdc3c7;
-        margin-bottom: 30px;
-    }
-
-    .auth-buttons {
-        display: flex;
-        gap: 20px;
-    }
-
-    .auth-btn {
-        background: linear-gradient(145deg, #3498db, #2980b9);
-        color: #fff;
-        padding: 12px 30px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    }
-
-    .auth-btn.register {
-        background: linear-gradient(145deg, #1abc9c, #16a085);
-    }
-
-    .auth-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    }
-</style>
-
-<div class="auth-container">
-    <div class="lock-icon">🔒</div>
-    <h1 class="auth-message">Login Required</h1>
-    <p class="auth-description">Please log in to access this page.</p>
-    <div class="auth-buttons">
-        <a href="{% url 'login' %}" class="auth-btn">Login</a>
-        <a href="{% url 'register' %}" class="auth-btn register">Register</a>
-    </div>
-</div>
 {% endblock %}
