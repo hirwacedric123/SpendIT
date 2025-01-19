@@ -316,16 +316,6 @@ The **home page** of iSpendIT is designed to provide users with an at-a-glance v
 ![Add Subcategory Page](readme_images/add_subcat.png)
 
 
----
-
-## API Documentation
-
-### Endpoints
-1. **`/api/accounts/`**: Retrieve or create accounts.  
-2. **`/api/transactions/`**: Retrieve, create, or update transactions.  
-3. **`/api/categories/`**: Manage categories and subcategories.  
-
-*(Add detailed API documentation or a link to it.)*  
 
 ---
 
