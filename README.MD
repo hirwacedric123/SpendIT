@@ -196,7 +196,7 @@ The **home page** of iSpendIT is designed to provide users with an at-a-glance v
     - View Visualized Data
 
 **Screenshot**:  
-*(Add a screenshot of the Recent Transactions section here.)*
+*![Recent Transactions section](/readme_images/recent.png)*
 
 ---
 
