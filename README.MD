@@ -38,8 +38,6 @@ This project is live at:
 
 The project comprises:
 - A **Django-based web application** for managing finances.
-- A **Flutter mobile app** for QR code-based attendance and finance tracking (future feature integration).
-
 ---
 
 ## Features
