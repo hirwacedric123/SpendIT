@@ -115,10 +115,7 @@ Follow these steps to set up the project locally:
 
 ---
 
-## Screenshots and Sections
-
-Here's how you can structure the README to explain each section of the home page with corresponding screenshots:
-
+### Screenshots and Sections
 ---
 
 ### Home Page Overview
