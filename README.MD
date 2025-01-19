@@ -173,11 +173,3 @@ For questions or feedback, feel free to reach out!
 - Multi-language support
 ```
 
-### How to Add Screenshots
-
-- Replace the `_Add screenshots of your application here_` section with actual screenshots of your app.  
-- Use markdown syntax for images:  
-   ```markdown
-   ![Screenshot 1](link-to-screenshot-1.png)
-   ![Screenshot 2](link-to-screenshot-2.png)
-   ```
