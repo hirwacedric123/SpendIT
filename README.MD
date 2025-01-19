@@ -62,8 +62,6 @@ The project comprises:
 - **HTML5**, **CSS3**, **JavaScript** for the user interface.
 - **Bootstrap** for responsive design.
 
-### Mobile:
-- **Flutter** for QR code-based attendance management.
 
 ### Additional Tools:
 - **Django REST Framework** for API creation.
@@ -113,8 +111,7 @@ Follow these steps to set up the project locally:
 
 ## Usage
 
-- **Web App**: Access the dashboard at `http://127.0.0.1:8000/` or the hosted link: [https://ispendit.pythonanywhere.com/](https://ispendit.pythonanywhere.com/).  
-- **Mobile App**: Use the Flutter app to manage finances on the go (planned feature).  
+## - **Web App**: Access the dashboard at `http://127.0.0.1:8000/` or the hosted link: [https://ispendit.pythonanywhere.com/](https://ispendit.pythonanywhere.com/).   
 
 ---
 
