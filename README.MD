@@ -343,7 +343,7 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 For questions, suggestions, or feedback, please contact:
 
 - **Name**: Cedric Hirwa  
-- **Email**: [your-email@example.com]  
+- **Email**: [hirwacedr12@gmail.com]  
 - **GitHub**: [https://github.com/hirwacedric123](https://github.com/hirwacedric123)  
 
 ---
